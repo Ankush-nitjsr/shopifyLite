@@ -1,0 +1,33 @@
+table {
+  border-collapse: collapse;
+  border: 2px solid var(--grey);
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+thead,
+tfoot {
+  background-color: var(--theme);
+}
+
+th,
+td {
+  border: 1px solid var(--grey);
+  padding: 8px 10px;
+}
+
+td:last-of-type {
+  text-align: center;
+}
+
+tbody > tr:nth-of-type(even) {
+  background-color: var(--headerLinks-grey);
+}
+
+tfoot th {
+  text-align: right;
+}
+
+tfoot td {
+  font-weight: bold;
+}

@@ -1,0 +1,9 @@
+img {
+  height: 5rem;
+  width: 10rem;
+}
+
+tr,
+td {
+  color: var(--white);
+}

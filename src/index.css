@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--white);
+  background-color: var(--theme);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --theme: #20062e;
+  --blue: #18b2de;
+  --white: #fff;
+  --grey: #d7d7d7;
+  --purple-grey: #8f8297;
+  --headerLinks-grey: #8ea6bb;
+  --yellow: #ffff00;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 40vw;
+  height: 50vh;
+  padding: 1rem;
+  border: 1px solid var(--blue);
+}
+.login-form input,
+.login-form button {
+  flex: 1;
+  margin: 2rem;
+  color: var(--white);
+  background-color: var(--theme);
+  border: 2px solid var(--white);
+}
+
+.search-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+  margin: 2rem;
+  height: 2rem;
+}
+
+.search-section input {
+  flex: 0.5;
+  color: var(--white);
+  background-color: var(--theme);
+  border: 1px solid var(--white);
+  border-radius: 0.5rem;
+}
+
+.search-section input::placeholder {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.search-section button {
+  color: var(--white);
+  background-color: var(--theme);
+  border: 1px solid var(--white);
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.search-section button:hover {
+  background-color: var(--white);
+  color: var(--theme);
+}
+
+.Logout-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8rem;
+}
+
+.Logout-page p {
+  word-break: break-word;
+}
