@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import Header from "../components/Header";
@@ -6,6 +6,7 @@ import Header from "../components/Header";
 const LogoutPage = () => {
   // Get user details with context hook
   const { userDetails } = useContext(AuthContext);
+  const { setUserDetails } = useContext(AuthContext);
   const { setIsAuthenticated } = useContext(AuthContext);
   const handleLogout = () => {
     // delete user from local storage
@@ -19,6 +20,11 @@ const LogoutPage = () => {
     // display success message on Logout
     toast.success("Logged out successfully");
   };
+
+  useEffect(() => {
+    setUserDetails(JSON.parse(localStorage.getItem("userDetails")));
+  }, []);
+
   return (
     <>
       <Header />
