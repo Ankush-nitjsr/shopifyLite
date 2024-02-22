@@ -40,7 +40,7 @@ main {
   width: 40vw;
   height: 50vh;
   padding: 1rem;
-  border: 1px solid var(--blue);
+  /* border: 1px solid var(--blue); */
 }
 .login-form input,
 .login-form button {
@@ -49,6 +49,14 @@ main {
   color: var(--white);
   background-color: var(--theme);
   border: 2px solid var(--white);
+  font-size: 1.25rem;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.login-form button:hover {
+  background-color: var(--white);
+  color: var(--theme);
 }
 
 .search-section {
@@ -89,10 +97,31 @@ main {
 .Logout-page {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 8rem;
+  margin: 1rem;
 }
 
 .Logout-page p {
   word-break: break-word;
+}
+
+.logout-btn {
+  margin: 1rem;
+  color: var(--yellow);
+  background-color: var(--theme);
+  border: 2px solid var(--white);
+  border-radius: 1.25rem;
+  font-size: 1.25rem;
+  padding: 1rem 1.5rem;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: var(--yellow);
+  color: var(--theme);
+}
+
+.userDetails-table {
+  width: 40vw;
 }

@@ -12,3 +12,26 @@
   align-items: center;
   gap: 1rem;
 }
+
+.filter-section input {
+  background-color: var(--theme);
+  border: 1px solid var(--white);
+  border-radius: 0.25rem;
+  color: var(--white);
+  padding: 0.25rem;
+  margin: 0.5rem;
+}
+
+.filter-section button {
+  color: var(--white);
+  background-color: var(--theme);
+  border: 1px solid var(--white);
+  border-radius: 0.5rem;
+  padding: 0.35rem;
+  transition: all 0.2s;
+}
+
+.filter-section button:hover {
+  background-color: var(--white);
+  color: var(--theme);
+}

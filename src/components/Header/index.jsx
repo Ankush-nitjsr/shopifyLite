@@ -10,7 +10,9 @@ function Header() {
     <header>
       <div className="gradient">Header</div>
       <nav>
-        <NavLink to="/">Login</NavLink>
+        <NavLink to="/">
+          {!localStorage.getItem("userDetails") ? "Login" : "Logout"}
+        </NavLink>
         <NavLink to="/home">Home Page</NavLink>
         <NavLink to="/cart">
           My Cart ({`${cartTotalQuantity} items - $${cartTotalAmount}`})

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductContainer from "../components/ProductContainer";
+import Header from "../components/Header";
 
 const HomePage = () => {
   const PRODUCTS_URL = "https://dummyjson.com/products";
@@ -49,6 +50,7 @@ const HomePage = () => {
 
   return (
     <>
+      <Header />
       {loading ? (
         <div
           style={{

@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
+import Header from "../components/Header";
 
 function LoginPage() {
   // authentication handling of user with context hook
@@ -36,39 +38,47 @@ function LoginPage() {
         throw new Error("Incorrect Username/Password");
       }
       const result = await response.json();
+      localStorage.setItem("userDetails", JSON.stringify(result));
       const token = result.token;
       // save token to local storage
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
+      // display success message on Login
+      toast.success("LogIn Successful!");
       console.log("Login Successful", user);
+
       // switch to HomePage on successful Login
       navigate("/home");
     } catch (error) {
       console.error("Error in login", error);
+      toast.error(error.message);
     }
   };
 
   return (
-    <main>
-      <h1>Login Page</h1>
-      <form onSubmit={handleOnLogin} className="login-form">
-        <input
-          name="username"
-          type="text"
-          placeholder="Username"
-          value={user.username}
-          onChange={handleChange}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={user.password}
-          onChange={handleChange}
-        />
-        <button type="submit">Login</button>
-      </form>
-    </main>
+    <>
+      <Header />
+      <main>
+        <h1>Login Page</h1>
+        <form onSubmit={handleOnLogin} className="login-form">
+          <input
+            name="username"
+            type="text"
+            placeholder="Username"
+            value={user.username}
+            onChange={handleChange}
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={user.password}
+            onChange={handleChange}
+          />
+          <button type="submit">Login</button>
+        </form>
+      </main>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "./styles.css";
 import { AuthContext } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Product = ({
   productId,
@@ -26,7 +27,7 @@ const Product = ({
     // Convert the array to JSON and save it to localStorage
     localStorage.setItem("myCartData", JSON.stringify(newCartData));
     console.log(localStorage.getItem("myCartData"));
-    console.log(myCartData);
+    toast.success("item added to cart");
   };
   const handleAddToCart = (id) => {
     if (id === productId) {
@@ -47,7 +48,7 @@ const Product = ({
         <img src={images} alt={title} />
       </div>
       <div className="details-info">
-        <div>{title}</div>
+        <div className="product-title">{title}</div>
         <div>Description: {description}</div>
         <div className="product-brand">{brand}</div>
         <div className="details-action">
@@ -62,7 +63,10 @@ const Product = ({
               )}
             </li>
             <li>
-              <button onClick={() => handleAddToCart(productId)}>
+              <button
+                className="addToCart-btn"
+                onClick={() => handleAddToCart(productId)}
+              >
                 Add to Cart
               </button>
             </li>

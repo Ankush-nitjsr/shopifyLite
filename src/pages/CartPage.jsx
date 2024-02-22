@@ -1,10 +1,14 @@
+import Header from "../components/Header";
 import Table from "../components/Table";
 
 const CartPage = () => {
   return (
-    <main>
-      <Table />
-    </main>
+    <>
+      <Header />
+      <main>
+        <Table />
+      </main>
+    </>
   );
 };
 

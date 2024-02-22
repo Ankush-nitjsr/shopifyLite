@@ -1,6 +1,5 @@
 import "./App.css";
 import LoginPage from "./pages/LoginPage";
-import Header from "./components/Header";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
@@ -8,14 +7,16 @@ import PrivateRoutes from "./components/PrivateRoutes";
 import LogoutPage from "./pages/LogoutPage";
 import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <div>
+      <ToastContainer />
       <Router>
-        <Header />
         <Routes>
           <Route
             path="/"

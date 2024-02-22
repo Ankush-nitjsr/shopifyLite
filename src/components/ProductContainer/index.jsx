@@ -36,6 +36,7 @@ const ProductContainer = ({ products }) => {
             type="text"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
+            placeholder="Enter minimum price"
           />
         </div>
         <div>
@@ -44,6 +45,7 @@ const ProductContainer = ({ products }) => {
             type="text"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
+            placeholder="Enter maximum price"
           />
         </div>
         <div>

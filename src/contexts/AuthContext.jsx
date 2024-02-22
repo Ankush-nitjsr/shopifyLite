@@ -3,8 +3,13 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
-  // save user details
+  // set state for username and password
   const [user, setUser] = useState({ username: "", password: "" });
+
+  // set state for user details
+  const [userDetails, setUserDetails] = useState(
+    JSON.parse(localStorage.getItem("userDetails")) || {}
+  );
 
   const [isAuthenticated, setIsAuthenticated] = useState(
     localStorage.getItem("token")
@@ -27,6 +32,8 @@ export default function AuthProvider({ children }) {
       value={{
         user,
         setUser,
+        userDetails,
+        setUserDetails,
         isAuthenticated,
         setIsAuthenticated,
         myCartData,
