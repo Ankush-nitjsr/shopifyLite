@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import Header from "../components/Header";
@@ -23,16 +23,15 @@ const LogoutPage = () => {
 
   useEffect(() => {
     setUserDetails(JSON.parse(localStorage.getItem("userDetails")));
-  }, []);
+  }, [setUserDetails]);
 
   return (
     <>
       <Header />
       <div className="Logout-page">
-        <h1>{`Hello, ${userDetails.firstName} ${userDetails.lastName}!`}</h1>
-        <h2 style={{ color: "red" }}>
-          You are already Logged In with below details
-        </h2>
+        <h1
+          style={{ color: "yellow" }}
+        >{`Hello, ${userDetails.firstName} ${userDetails.lastName}!`}</h1>
         <table className="userDetails-table">
           <thead>
             <tr>
