@@ -10,6 +10,11 @@ tfoot {
   background-color: var(--theme);
 }
 
+thead > tr > th {
+  color: var(--yellow);
+  font-size: large;
+}
+
 th,
 td {
   border: 1px solid var(--grey);
@@ -20,7 +25,7 @@ td:last-of-type {
   text-align: center;
 }
 
-tbody > tr:nth-of-type(even) {
+tbody > tr:nth-of-type(odd) {
   background-color: var(--headerLinks-grey);
 }
 
