@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 export const AuthContext = createContext();
 
@@ -19,13 +20,23 @@ export default function AuthProvider({ children }) {
     JSON.parse(localStorage.getItem("myCartData")) || []
   );
 
-  const [cartTotalAmount, setCartTotalAmount] = useState(
-    JSON.parse(localStorage.getItem("totalCartValue")) || 0
-  );
+  const [cartTotalAmount, setCartTotalAmount] = useState(0);
 
-  const [cartTotalQuantity, setCartTotalQuantity] = useState(
-    JSON.parse(localStorage.getItem("totalCartQuantity")) || 0
-  );
+  const [cartTotalQuantity, setCartTotalQuantity] = useState(0);
+
+  // Recalculate total quantity and amount when cart data changes
+  useEffect(() => {
+    const totalQuantity = myCartData.reduce(
+      (acc, item) => acc + item.productQuantity,
+      0
+    );
+    const totalAmount = myCartData.reduce(
+      (acc, item) => acc + item.productAmount,
+      0
+    );
+    setCartTotalQuantity(totalQuantity);
+    setCartTotalAmount(totalAmount);
+  }, [myCartData]);
 
   return (
     <AuthContext.Provider
@@ -48,3 +59,7 @@ export default function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
