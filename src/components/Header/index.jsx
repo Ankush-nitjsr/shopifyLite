@@ -6,6 +6,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 function Header() {
   const { cartTotalAmount } = useContext(AuthContext);
   const { cartTotalQuantity } = useContext(AuthContext);
+
   return (
     <header>
       <div className="gradient">Header</div>
@@ -15,7 +16,11 @@ function Header() {
         </NavLink>
         <NavLink to="/home">Home Page</NavLink>
         <NavLink to="/cart">
-          My Cart ({`${cartTotalQuantity} items - $${cartTotalAmount}`})
+          My Cart (
+          {`${cartTotalQuantity} items - $${
+            Math.round(cartTotalAmount * 100) / 100
+          }`}
+          )
         </NavLink>
       </nav>
     </header>
