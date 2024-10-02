@@ -1,7 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import "./styles.css";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 const Product = ({
   productId,
@@ -24,14 +25,16 @@ const Product = ({
   const handleUpdateCart = (newCartData) => {
     // set the state with new array of cart data
     setMyCartData(newCartData);
+
     // Convert the array to JSON and save it to localStorage
     localStorage.setItem("myCartData", JSON.stringify(newCartData));
-    console.log(localStorage.getItem("myCartData"));
+
     toast.success("item added to cart");
   };
   const handleAddToCart = (id) => {
     if (id === productId) {
       const productToBeAddedToCart = {
+        productId: id,
         productPicture: images,
         productName: title,
         productPrice: price,
@@ -75,6 +78,19 @@ const Product = ({
       </div>
     </div>
   );
+};
+
+Product.propTypes = {
+  productId: PropTypes.number,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  price: PropTypes.number,
+  discountPercentage: PropTypes.number,
+  rating: PropTypes.number,
+  stock: PropTypes.number,
+  brand: PropTypes.string,
+  category: PropTypes.string,
+  images: PropTypes.string,
 };
 
 export default Product;
