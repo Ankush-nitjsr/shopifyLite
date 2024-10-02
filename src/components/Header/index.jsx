@@ -11,7 +11,7 @@ function Header() {
       <div className="gradient">Header</div>
       <nav>
         <NavLink to="/">
-          {!localStorage.getItem("userDetails") ? "Login" : "Logout"}
+          {!localStorage.getItem("userDetails") ? "Login" : "Profile Details"}
         </NavLink>
         <NavLink to="/home">Home Page</NavLink>
         <NavLink to="/cart">
