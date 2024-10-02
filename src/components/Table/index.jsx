@@ -6,9 +6,7 @@ import TableRow from "../TableRow";
 const Table = () => {
   const { myCartData } = useContext(AuthContext);
   const { setMyCartData } = useContext(AuthContext);
-  const { cartTotalAmount } = useContext(AuthContext);
   const { setCartTotalAmount } = useContext(AuthContext);
-  const { cartTotalQuantity } = useContext(AuthContext);
   const { setCartTotalQuantity } = useContext(AuthContext);
 
   // useEffect to load data from localStorage on component mount
@@ -32,7 +30,7 @@ const Table = () => {
         )
       );
     }
-  }, []);
+  }, [setMyCartData, setCartTotalAmount, setCartTotalQuantity]);
 
   return (
     <table>
@@ -42,8 +40,6 @@ const Table = () => {
           <th scope="col">Products</th>
           <th scope="col">Price</th>
           <th scope="col">Quantity</th>
-          <th scope="col">Add</th>
-          <th scope="col">Remove</th>
           <th scope="col">Amount</th>
         </tr>
       </thead>
@@ -54,10 +50,17 @@ const Table = () => {
       </tbody>
       <tfoot>
         <tr>
-          <th scope="row" colSpan="6">
+          <th scope="row" colSpan="4">
             Total Amount to Pay (in USA dollar($))
           </th>
-          <td>{cartTotalAmount}</td>
+          <td>
+            {Math.round(
+              myCartData.reduce(
+                (sum, eachProduct) => sum + eachProduct.productAmount,
+                0
+              ) * 100
+            ) / 100}
+          </td>
         </tr>
       </tfoot>
     </table>
