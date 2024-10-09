@@ -26,7 +26,7 @@
   --grey: #d7d7d7;
   --purple-grey: #8f8297;
   --headerLinks-grey: #8ea6bb;
-  --yellow: #ffff00;
+  --yellow: #dada68;
 }
 
 main {
@@ -40,40 +40,47 @@ main {
 .login-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   width: 40vw;
-  height: 50vh;
-  padding: 1rem;
-  /* border: 1px solid var(--blue); */
+  padding: 0 4rem;
+  row-gap: 1.75rem;
 }
-.login-form input,
-.login-form button {
-  flex: 1;
-  margin: 2rem;
-  color: var(--white);
-  background-color: var(--theme);
-  border: 2px solid var(--white);
+.login-form input {
+  margin: 1rem 0;
+  color: var(--theme);
+  background-color: #c2c4c6;
+  border: 1px solid var(--headerLinks-grey);
+  border-radius: 0.5rem;
   font-size: 1.25rem;
-  padding: 1rem;
+  padding: 0.5rem;
   transition: all 0.2s;
 }
 
-.login-form button:hover {
-  background-color: var(--white);
-  color: var(--theme);
+.login-form input::placeholder {
+  font-size: 1rem;
+}
+
+.login-form button {
+  margin: 1rem 0;
+  color: var(--white);
+  border: 1px solid var(--headerLinks-grey);
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  transition: all 0.2s;
 }
 
 .search-section {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 95%;
   gap: 1rem;
   margin: 2rem;
   height: 2rem;
 }
 
 .search-section input {
-  flex: 0.5;
+  flex: 0.2;
+  padding-left: 0.75rem;
   color: var(--white);
   background-color: var(--theme);
   border: 1px solid var(--white);
@@ -81,7 +88,6 @@ main {
 }
 
 .search-section input::placeholder {
-  padding: 0.5rem;
   font-size: 1rem;
 }
 
@@ -89,6 +95,7 @@ main {
   color: var(--white);
   background-color: var(--theme);
   border: 1px solid var(--white);
+  padding: 0.15rem 0.75rem 0.45rem 0.75rem;
   border-radius: 0.5rem;
   transition: all 0.2s;
 }
@@ -111,19 +118,20 @@ main {
 }
 
 .logout-btn {
-  margin: 1rem;
-  color: var(--yellow);
+  margin: 2rem;
+  color: var(--white);
   background-color: var(--theme);
   border: 2px solid var(--white);
   border-radius: 1.25rem;
   font-size: 1.25rem;
-  padding: 1rem 1.5rem;
-  transition: all 0.2s;
+  padding: 0.5rem 1.5rem 0.7rem 1.5rem;
+  transition: all 0.5s;
+  text-align: center;
 }
 
 .logout-btn:hover {
-  background-color: var(--yellow);
-  color: var(--theme);
+  background-color: var(--purple-grey);
+  color: var(--yellow);
 }
 
 .userDetails-table {
