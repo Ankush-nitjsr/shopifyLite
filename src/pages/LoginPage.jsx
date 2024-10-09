@@ -85,7 +85,7 @@ function LoginPage() {
               <input
                 name="password"
                 type="password"
-                placeholder="Password"
+                placeholder="Enter password"
                 value={user.password}
                 onChange={handleChange}
                 className="h-10"
