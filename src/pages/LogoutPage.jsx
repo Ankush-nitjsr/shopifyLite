@@ -29,9 +29,7 @@ const LogoutPage = () => {
     <>
       <Header />
       <div className="Logout-page">
-        <h1
-          style={{ color: "yellow" }}
-        >{`Hello, ${userDetails.firstName} ${userDetails.lastName}!`}</h1>
+        <h1 className="text-yellow-300 m-4 font-bold text-2xl">{`Hello, ${userDetails.firstName} ${userDetails.lastName}!`}</h1>
         <table className="userDetails-table">
           <thead>
             <tr>
@@ -62,13 +60,12 @@ const LogoutPage = () => {
             </tr>
             <tr>
               <th scope="row">Image</th>
-              <td>
+              <td className="flex justify-center">
                 <img src={userDetails.image} />
               </td>
             </tr>
           </tbody>
         </table>
-        <p>Click on below button to LogOut</p>
         <button className="logout-btn" onClick={handleLogout}>
           Logout
         </button>
