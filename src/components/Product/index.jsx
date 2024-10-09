@@ -9,11 +9,8 @@ const Product = ({
   title,
   description,
   price,
-  discountPercentage,
-  rating,
   stock,
   brand,
-  category,
   images,
 }) => {
   // component starts from here
@@ -50,30 +47,32 @@ const Product = ({
       <div className="product-img">
         <img src={images} alt={title} />
       </div>
-      <div className="details-info">
+      <div className="details-info space-y-2">
         <div className="product-title">{title}</div>
-        <div>Description: {description}</div>
-        <div className="product-brand">{brand}</div>
+        <div className="text-gray-400 font-light text-sm">{description}</div>
+        <div className="product-brand font-bold">{brand}</div>
         <div className="details-action">
-          <ul>
-            <li>Price: ${price}</li>
-            <li>
-              Status:
-              {stock > 0 ? (
-                <span className="success"> In Stock</span>
-              ) : (
-                <span className="error"> Unavailable</span>
-              )}
-            </li>
-            <li>
+          <div className="flex justify-between">
+            <div>
+              <div>Price: ${price}</div>
+              <div>
+                Status:{" "}
+                {stock > 0 ? (
+                  <span className="success">In Stock</span>
+                ) : (
+                  <span className="error">Unavailable</span>
+                )}
+              </div>
+            </div>
+            <div>
               <button
                 className="addToCart-btn"
                 onClick={() => handleAddToCart(productId)}
               >
                 Add to Cart
               </button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
