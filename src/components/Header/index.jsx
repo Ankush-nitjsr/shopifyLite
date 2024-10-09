@@ -16,7 +16,7 @@ function Header() {
         </NavLink>
         <NavLink to="/home">Home Page</NavLink>
         <NavLink to="/cart">
-          My Cart (
+          Cart (
           {`${cartTotalQuantity} items - $${
             Math.round(cartTotalAmount * 100) / 100
           }`}
