@@ -70,6 +70,7 @@ function LoginPage() {
                 Username
               </label>
               <input
+                id="username"
                 name="username"
                 type="text"
                 placeholder="Enter username"
@@ -79,10 +80,11 @@ function LoginPage() {
               />
             </p>
             <p className="flex flex-col space-y-1">
-              <label htmlFor="username" className="text-black text-lg">
+              <label htmlFor="password" className="text-black text-lg">
                 Password
               </label>
               <input
+                id="password"
                 name="password"
                 type="password"
                 placeholder="Enter password"
@@ -92,7 +94,10 @@ function LoginPage() {
               />
             </p>
             <p className="flex flex-col">
-              <button type="submit" className="h-10 text-center bg-blue-600">
+              <button
+                type="submit"
+                className="h-10 text-center bg-blue-600 hover:bg-blue-400"
+              >
                 Login
               </button>
               <h3 className="text-xs text-black">
