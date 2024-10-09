@@ -22,10 +22,15 @@ const ProductContainer = ({ products }) => {
     }
   };
 
-  // useEffect to reapply the filter when minPrice or maxPrice changes
+  const clearFilter = () => {
+    setMinPrice("");
+    setMaxPrice("");
+    setFilteredProducts(products);
+  };
+
   useEffect(() => {
-    applyFilter();
-  }, [minPrice, maxPrice, products]);
+    setFilteredProducts(products);
+  }, [setFilteredProducts, products]);
 
   return (
     <>
@@ -36,7 +41,7 @@ const ProductContainer = ({ products }) => {
             type="text"
             value={minPrice}
             onChange={(e) => setMinPrice(e.target.value)}
-            placeholder="Enter minimum price"
+            placeholder="Enter minimum"
           />
         </div>
         <div>
@@ -45,11 +50,14 @@ const ProductContainer = ({ products }) => {
             type="text"
             value={maxPrice}
             onChange={(e) => setMaxPrice(e.target.value)}
-            placeholder="Enter maximum price"
+            placeholder="Enter maximum"
           />
         </div>
         <div>
           <button onClick={applyFilter}>Apply Filter</button>
+        </div>
+        <div>
+          <button onClick={clearFilter}>Clear Filter</button>
         </div>
       </div>
       <div className="product-container">
