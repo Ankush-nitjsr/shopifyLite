@@ -5,7 +5,7 @@ li {
 
 .product {
   box-sizing: border-box;
-  border: 1px solid yellow;
+  border: 1px solid var(--purple-grey);
   border-radius: 0.5rem;
   padding: 1rem;
   display: flex;
@@ -20,7 +20,7 @@ li {
 
 .product-img img {
   width: 100%;
-  height: 18rem;
+  height: 14rem;
 }
 
 .product-brand {
@@ -34,11 +34,12 @@ li {
 }
 
 .addToCart-btn {
-  background-color: var(--yellow);
-  border: 1px solid var(--white);
+  background-color: var(--theme);
+  border: 1px solid var(--purple-grey);
   border-radius: 0.5rem;
-  padding: 0.25rem;
-  transition: all 0.2s;
+  padding: 0.25rem 0.5rem 0.45rem 0.5rem;
+  margin-top: 0.5rem;
+  transition: all 0.4s;
 }
 
 .addToCart-btn:hover {
