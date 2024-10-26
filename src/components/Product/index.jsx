@@ -4,19 +4,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 
-const Product = ({
-  productId,
-  title,
-  description,
-  price,
-  stock,
-  brand,
-  images,
-}) => {
-  // component starts from here
-
-  const { myCartData } = useContext(AuthContext);
-  const { setMyCartData } = useContext(AuthContext);
+const Product = ({ productId, title, price, stock, brand, images }) => {
+  const { myCartData, setMyCartData } = useContext(AuthContext);
 
   // update cart
   const handleUpdateCart = (newCartData) => {
@@ -26,8 +15,10 @@ const Product = ({
     // Convert the array to JSON and save it to localStorage
     localStorage.setItem("myCartData", JSON.stringify(newCartData));
 
+    // display popup with success message
     toast.success("item added to cart");
   };
+
   const handleAddToCart = (id) => {
     if (id === productId) {
       const productToBeAddedToCart = {
@@ -49,12 +40,11 @@ const Product = ({
       </div>
       <div className="details-info space-y-2">
         <div className="product-title">{title}</div>
-        <div className="text-gray-400 font-light text-sm">{description}</div>
         <div className="product-brand font-bold">{brand}</div>
         <div className="details-action">
-          <div className="flex justify-between">
+          <div className="flex justify-between text-gray-500">
             <div>
-              <div>Price: ${price}</div>
+              <div className="text-xl text-[var(--theme)]">Price: ${price}</div>
               <div>
                 Status:{" "}
                 {stock > 0 ? (
@@ -80,16 +70,12 @@ const Product = ({
 };
 
 Product.propTypes = {
-  productId: PropTypes.number,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  price: PropTypes.number,
-  discountPercentage: PropTypes.number,
-  rating: PropTypes.number,
-  stock: PropTypes.number,
+  productId: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  stock: PropTypes.number.isRequired,
   brand: PropTypes.string,
-  category: PropTypes.string,
-  images: PropTypes.string,
+  images: PropTypes.string.isRequired,
 };
 
 export default Product;
