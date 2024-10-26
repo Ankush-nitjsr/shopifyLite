@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -6,17 +7,18 @@ import PropTypes from "prop-types";
 
 const ProductCard = ({ productId, title, price, stock, brand, images }) => {
   const { myCartData, setMyCartData } = useContext(AuthContext);
+  const navigate = useNavigate(); // Hook for navigation
 
-  // update cart
+  // Navigate to product details page
+  const handleNavigateToProduct = () => {
+    navigate(`/product/${productId}`);
+  };
+
+  // Update cart
   const handleUpdateCart = (newCartData) => {
-    // set the state with new array of cart data
     setMyCartData(newCartData);
-
-    // Convert the array to JSON and save it to localStorage
     localStorage.setItem("myCartData", JSON.stringify(newCartData));
-
-    // display popup with success message
-    toast.success("item added to cart");
+    toast.success("Item added to cart");
   };
 
   const handleAddToCart = (id) => {
@@ -35,11 +37,26 @@ const ProductCard = ({ productId, title, price, stock, brand, images }) => {
 
   return (
     <div className="product">
-      <div className="product-img">
+      <button
+        className="product-img"
+        onClick={handleNavigateToProduct}
+        style={{
+          padding: 0,
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+        }}
+      >
         <img src={images} alt={title} />
-      </div>
+      </button>
       <div className="details-info space-y-2">
-        <div className="product-title">{title}</div>
+        <button
+          className="product-title"
+          onClick={handleNavigateToProduct}
+          style={{ background: "none", border: "none", cursor: "pointer" }}
+        >
+          {title}
+        </button>
         <div className="product-brand font-bold">{brand}</div>
         <div className="details-action">
           <div className="flex justify-between text-gray-500">
