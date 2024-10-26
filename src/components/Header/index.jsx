@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
 function Header() {
-  const { cartTotalAmount } = useContext(AuthContext);
   const { cartTotalQuantity } = useContext(AuthContext);
 
   return (
@@ -15,13 +14,8 @@ function Header() {
           {!localStorage.getItem("userDetails") ? "Login" : "Profile Details"}
         </NavLink>
         <NavLink to="/home">Home Page</NavLink>
-        <NavLink to="/cart">
-          Cart (
-          {`${cartTotalQuantity} items - $${
-            Math.round(cartTotalAmount * 100) / 100
-          }`}
-          )
-        </NavLink>
+        <NavLink to="/cart">Cart ({`${cartTotalQuantity} items`})</NavLink>
+        <NavLink>{localStorage.getItem("userDetails") ? "Logout" : ""}</NavLink>
       </nav>
     </header>
   );
