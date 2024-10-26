@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 
-const Product = ({ productId, title, price, stock, brand, images }) => {
+const ProductCard = ({ productId, title, price, stock, brand, images }) => {
   const { myCartData, setMyCartData } = useContext(AuthContext);
 
   // update cart
@@ -69,7 +69,7 @@ const Product = ({ productId, title, price, stock, brand, images }) => {
   );
 };
 
-Product.propTypes = {
+ProductCard.propTypes = {
   productId: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
@@ -78,4 +78,4 @@ Product.propTypes = {
   images: PropTypes.string.isRequired,
 };
 
-export default Product;
+export default ProductCard;
