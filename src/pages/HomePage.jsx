@@ -63,7 +63,7 @@ const HomePage = () => {
           <h1>Loading...</h1>
         </div>
       ) : (
-        <div>
+        <div className="px-24">
           <form className="search-section" onSubmit={handleSearch}>
             <input
               type="text"
