@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import Product from "../Product";
+import ProductCard from "../product-card";
 import "./styles.css";
 
 const ProductContainer = ({ products }) => {
@@ -62,7 +63,7 @@ const ProductContainer = ({ products }) => {
       </div>
       <div className="product-container">
         {filteredProducts.map((product) => (
-          <Product
+          <ProductCard
             key={product.id}
             productId={product.id}
             title={product.title}
@@ -74,7 +75,7 @@ const ProductContainer = ({ products }) => {
             brand={product.brand}
             category={product.category}
             thumbnail={product.thumbnail}
-            images={product.thumbnail} // need to change to image
+            images={product.thumbnail} // PENDING: change to image
           />
         ))}
       </div>
