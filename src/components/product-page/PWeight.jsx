@@ -10,5 +10,5 @@ export const PWeight = ({ weight }) => {
 };
 
 PWeight.propTypes = {
-  weight: PropTypes.string,
+  weight: PropTypes.number.isRequired,
 };
