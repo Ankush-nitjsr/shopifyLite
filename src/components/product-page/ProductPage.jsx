@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useParams } from "react-router-dom";
 import { useGetProduct } from "./useGetProduct";
 import Header from "../Header";
