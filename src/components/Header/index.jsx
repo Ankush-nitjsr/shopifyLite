@@ -1,13 +1,30 @@
+import { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import "./styles.css";
-import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import "./styles.css";
 
 function Header() {
   const { cartTotalQuantity } = useContext(AuthContext);
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolling(true);
+      } else {
+        setIsScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <header>
+    <header className={isScrolling ? "scrolled" : ""}>
       <div className="gradient">Header</div>
       <nav>
         <NavLink to="/">
