@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ProductPage } from "./components/product/ProductPage";
+import { ProductPage } from "./components/product-page/ProductPage";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
