@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ProductPage } from "./components/product/ProductPage";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -24,6 +25,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<HomePage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/product/:pid" element={<ProductPage />} />
           </Route>
         </Routes>
       </Router>
