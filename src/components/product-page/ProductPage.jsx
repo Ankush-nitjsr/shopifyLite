@@ -3,6 +3,7 @@ import { useGetProduct } from "./useGetProduct";
 import Header from "../header/Header";
 import { PPLeftContainer } from "./PPLeftContainer";
 import { PPRightContainer } from "./PPRightContainer";
+import { ProductReviews } from "./ProductReviews";
 
 export const ProductPage = () => {
   // Get product id from URL params
@@ -15,9 +16,9 @@ export const ProductPage = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    <>
+    <div className="px-7">
       <Header />
-      <div className="flex w-full px-7 py-7 justify-center space-x-8">
+      <div className="flex w-full py-7 justify-center space-x-8">
         {/* Left Section: Product Images */}
         <PPLeftContainer
           title={data.title}
@@ -28,6 +29,7 @@ export const ProductPage = () => {
         {/* Right Section: Product Details */}
         <PPRightContainer data={data} />
       </div>
-    </>
+      <ProductReviews reviews={data.reviews} rating={data.rating} />
+    </div>
   );
 };
