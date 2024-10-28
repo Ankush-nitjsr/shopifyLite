@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductContainer from "../components/product-container";
+import ProductContainer from "../components/product-container/ProductContainer";
 import Header from "../components/header/Header";
 
 const HomePage = () => {
