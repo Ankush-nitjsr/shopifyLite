@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetProduct } from "./useGetProduct";
-import Header from "../Header";
+import Header from "../header/Header";
 import { PPLeftContainer } from "./PPLeftContainer";
 import { PPRightContainer } from "./PPRightContainer";
 
