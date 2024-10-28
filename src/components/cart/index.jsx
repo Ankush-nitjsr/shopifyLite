@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import "./styles.css";
 import { AuthContext } from "../../contexts/AuthContext";
-import TableRow from "../TableRow";
+import TableRow from "./cart-item";
 
 const Table = () => {
   const { myCartData } = useContext(AuthContext);
