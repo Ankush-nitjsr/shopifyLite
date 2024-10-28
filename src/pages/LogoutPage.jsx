@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
-import Header from "../components/Header";
+import Header from "../components/header";
 
 const LogoutPage = () => {
   // Get user details with context hook

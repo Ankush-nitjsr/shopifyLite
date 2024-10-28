@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ProductContainer from "../components/ProductContainer";
-import Header from "../components/Header";
+import ProductContainer from "../components/product-container";
+import Header from "../components/header";
 
 const HomePage = () => {
   const PRODUCTS_URL = "https://dummyjson.com/products";
