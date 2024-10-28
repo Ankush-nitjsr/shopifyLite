@@ -7,7 +7,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/16/solid";
 
-const TableRow = ({ rowData }) => {
+const CartItem = ({ rowData }) => {
   const { myCartData, setMyCartData } = useContext(AuthContext);
 
   const handleIncrease = (id) => {
@@ -94,4 +94,4 @@ const TableRow = ({ rowData }) => {
   );
 };
 
-export default TableRow;
+export default CartItem;
