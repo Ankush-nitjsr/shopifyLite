@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import "./styles.css";
 import { AuthContext } from "../../contexts/AuthContext";
-import TableRow from "./cart-item";
+import CartItem from "./cart-item/CartItem";
 
-const Table = () => {
+const Cart = () => {
   const { myCartData } = useContext(AuthContext);
   const { setMyCartData } = useContext(AuthContext);
   const { setCartTotalAmount } = useContext(AuthContext);
@@ -45,7 +45,7 @@ const Table = () => {
       </thead>
       <tbody>
         {myCartData.map((product, i) => (
-          <TableRow key={i} rowData={product} />
+          <CartItem key={i} rowData={product} />
         ))}
       </tbody>
       <tfoot>
@@ -67,4 +67,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default Cart;
