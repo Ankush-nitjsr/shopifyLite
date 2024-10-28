@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import ProductCard from "../product-card/ProductCard";
 import "./styles.css";
 
@@ -75,12 +75,30 @@ const ProductContainer = ({ products }) => {
             brand={product.brand}
             category={product.category}
             thumbnail={product.thumbnail}
-            images={product.thumbnail} // PENDING: change to image
+            images={product.images}
           />
         ))}
       </div>
     </>
   );
+};
+
+ProductContainer.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      discountPercentage: PropTypes.number,
+      rating: PropTypes.number,
+      stock: PropTypes.number,
+      brand: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+      images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    })
+  ).isRequired,
 };
 
 export default ProductContainer;
