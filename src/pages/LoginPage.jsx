@@ -1,4 +1,4 @@
-import Header from "../components/header";
+import Header from "../components/header/Header";
 import { LoginForm } from "../components/login/LoginForm";
 
 function LoginPage() {
