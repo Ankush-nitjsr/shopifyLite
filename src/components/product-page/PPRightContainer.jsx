@@ -10,8 +10,35 @@ import { PSelectQuantity } from "./PSelectQuantity";
 import { ArrowUturnLeftIcon } from "@heroicons/react/20/solid";
 import { CheckboxField } from "../../ui/CheckboxField";
 import { PDetails } from "./PDetails";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 export const PPRightContainer = ({ data }) => {
+  const { myCartData, setMyCartData } = useContext(AuthContext);
+
+  // Update cart
+  const handleUpdateCart = (newCartData) => {
+    setMyCartData(newCartData);
+    localStorage.setItem("myCartData", JSON.stringify(newCartData));
+    toast.success("Item added to cart");
+  };
+
+  // Add product to cart
+  const handleAddToCart = (id) => {
+    if (id === data.id) {
+      const productToBeAddedToCart = {
+        productId: id,
+        productPicture: data.images[0],
+        productName: data.title,
+        productPrice: data.price,
+        productQuantity: 1,
+        productAmount: data.price,
+      };
+      handleUpdateCart([...myCartData, productToBeAddedToCart]);
+    }
+  };
+
   return (
     <div className="product-details-container w-[50%] space-y-4">
       <div className="flex space-x-6">
@@ -57,7 +84,10 @@ export const PPRightContainer = ({ data }) => {
               <p>{data.returnPolicy}</p>
             </div>
             <PSelectQuantity minimumOrderQuantity={data.minimumOrderQuantity} />
-            <PButton text={"Add to Cart"} />
+            <PButton
+              text={"Add to Cart"}
+              handleClick={() => handleAddToCart(data.id)}
+            />
             <PButton text={"Buy Now"} />
           </div>
           <CheckboxField text={"Add to Wish List"} />
@@ -72,6 +102,7 @@ export const PPRightContainer = ({ data }) => {
 
 PPRightContainer.propTypes = {
   data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
@@ -86,5 +117,6 @@ PPRightContainer.propTypes = {
     meta: PropTypes.shape({
       createdAt: PropTypes.string.isRequired,
     }).isRequired,
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
 };
