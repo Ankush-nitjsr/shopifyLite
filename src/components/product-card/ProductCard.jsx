@@ -21,11 +21,12 @@ const ProductCard = ({ productId, title, price, stock, brand, images }) => {
     toast.success("Item added to cart");
   };
 
+  // Add product to cart
   const handleAddToCart = (id) => {
     if (id === productId) {
       const productToBeAddedToCart = {
         productId: id,
-        productPicture: images,
+        productPicture: images[0],
         productName: title,
         productPrice: price,
         productQuantity: 1,
@@ -47,7 +48,7 @@ const ProductCard = ({ productId, title, price, stock, brand, images }) => {
           cursor: "pointer",
         }}
       >
-        <img src={images} alt={title} />
+        <img src={images[0]} alt={title} />
       </button>
       <div className="details-info space-y-2">
         <button
@@ -92,7 +93,7 @@ ProductCard.propTypes = {
   price: PropTypes.number.isRequired,
   stock: PropTypes.number.isRequired,
   brand: PropTypes.string,
-  images: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ProductCard;
