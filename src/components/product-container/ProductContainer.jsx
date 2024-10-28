@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import ProductCard from "../product-card";
+import ProductCard from "../product-card/ProductCard";
 import "./styles.css";
 
 const ProductContainer = ({ products }) => {
