@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import "./styles.css";
 
-function Header() {
+const Header = () => {
   const { cartTotalQuantity } = useContext(AuthContext);
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -36,6 +36,6 @@ function Header() {
       </nav>
     </header>
   );
-}
+};
 
 export default Header;
