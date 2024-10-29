@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import ProductCard from "../product-card/ProductCard";
 import "./styles.css";
+import PropTypes from "prop-types";
 import { productPropTypes } from "../../lib/productPropTypes";
 
 const ProductContainer = ({ products }) => {
@@ -72,7 +72,7 @@ const ProductContainer = ({ products }) => {
 };
 
 ProductContainer.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape(productPropTypes)).isRequired,
+  products: PropTypes.arrayOf(productPropTypes),
 };
 
 export default ProductContainer;
