@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ProductCard from "../product-card/ProductCard";
 import "./styles.css";
+import { productPropTypes } from "../../lib/productPropTypes";
 
 const ProductContainer = ({ products }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -63,20 +64,7 @@ const ProductContainer = ({ products }) => {
       </div>
       <div className="product-container">
         {filteredProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            productId={product.id}
-            title={product.title}
-            description={product.description}
-            price={product.price}
-            discountPercentage={product.discountPercentage}
-            rating={product.rating}
-            stock={product.stock}
-            brand={product.brand}
-            category={product.category}
-            thumbnail={product.thumbnail}
-            images={product.images}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </>
@@ -84,21 +72,7 @@ const ProductContainer = ({ products }) => {
 };
 
 ProductContainer.propTypes = {
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      discountPercentage: PropTypes.number,
-      rating: PropTypes.number,
-      stock: PropTypes.number,
-      brand: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
-      thumbnail: PropTypes.string.isRequired,
-      images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    })
-  ).isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape(productPropTypes)).isRequired,
 };
 
 export default ProductContainer;
