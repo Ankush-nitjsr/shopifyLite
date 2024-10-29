@@ -11,22 +11,6 @@ const HomePage = () => {
   const [searchFlag, setSearchFlag] = useState(false);
   const [searchedProducts, setSearchedProducts] = useState([]);
 
-  // useEffect to load products when component mounts
-  useEffect(() => {
-    loadAllProducts();
-  }, []);
-
-  const loadAllProducts = async () => {
-    try {
-      const response = await fetch(PRODUCTS_URL);
-      const data = await response.json();
-      setAllProducts(data.products);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error loading products", error);
-    }
-  };
-
   const findProducts = () => {
     // Perform search logic and update searchData
     const filteredProducts = allProducts.filter((product) => {
@@ -47,6 +31,22 @@ const HomePage = () => {
     setSearchFlag(true);
     findProducts();
   };
+
+  // useEffect to load products when component mounts
+  useEffect(() => {
+    const loadAllProducts = async () => {
+      try {
+        const response = await fetch(PRODUCTS_URL);
+        const data = await response.json();
+        setAllProducts(data.products);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error loading products", error);
+      }
+    };
+
+    loadAllProducts();
+  }, []);
 
   return (
     <>
@@ -73,9 +73,13 @@ const HomePage = () => {
             />
             <button type="submit">Search</button>
           </form>
-          <ProductContainer
-            products={!searchFlag ? allProducts : searchedProducts}
-          />
+          {(!searchFlag ? allProducts : searchedProducts).length > 0 ? (
+            <ProductContainer
+              products={!searchFlag ? allProducts : searchedProducts || []}
+            />
+          ) : (
+            <div>No products found.</div>
+          )}
         </div>
       )}
     </>
