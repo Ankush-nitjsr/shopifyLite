@@ -10,14 +10,16 @@ export const PDeliveryAndAvailability = ({
         <p>Free delivery :</p>
         <p className="font-bold">{shippingInformation}</p>
       </div>
-      <div
-        className={`${
-          availabilityStatus === "In Stock"
-            ? "text-green-600"
-            : "text-orange-300"
-        } text-xl mt-4`}
-      >
-        {availabilityStatus}
+      <div>
+        <span
+          className={`${
+            availabilityStatus === "In Stock"
+              ? "text-green-600"
+              : "text-orange-300"
+          } text-xl mt-4`}
+        >
+          {availabilityStatus}
+        </span>
       </div>
     </div>
   );
