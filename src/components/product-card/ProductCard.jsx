@@ -85,7 +85,7 @@ const ProductCard = ({ product }) => {
 };
 
 ProductCard.propTypes = {
-  product: productPropTypes.isRequired,
+  product: productPropTypes,
 };
 
 export default ProductCard;
