@@ -3,12 +3,12 @@ import Cart from "../components/cart/Cart";
 
 const CartPage = () => {
   return (
-    <>
+    <div className="px-14">
       <Header />
-      <main>
+      <main className="p-7 bg-gray-500">
         <Cart />
       </main>
-    </>
+    </div>
   );
 };
 
