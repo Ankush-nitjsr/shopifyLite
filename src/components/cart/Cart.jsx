@@ -2,12 +2,16 @@ import { useContext, useEffect } from "react";
 import "./styles.css";
 import { AuthContext } from "../../contexts/AuthContext";
 import CartItem from "./cart-item/CartItem";
+import { Separator } from "../../ui/separator";
+import { CartSubTotal } from "./cart-item/CartSubTotal";
 
 const Cart = () => {
   const { myCartData } = useContext(AuthContext);
   const { setMyCartData } = useContext(AuthContext);
   const { setCartTotalAmount } = useContext(AuthContext);
   const { setCartTotalQuantity } = useContext(AuthContext);
+
+  console.log("cart data", myCartData);
 
   // useEffect to load data from localStorage on component mount
   useEffect(() => {
@@ -33,37 +37,19 @@ const Cart = () => {
   }, [setMyCartData, setCartTotalAmount, setCartTotalQuantity]);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Picture</th>
-          <th scope="col">Products</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Amount</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div className="w-full flex gap-8">
+      <div className="cart-items w-[70%] bg-gray-400 p-4">
         {myCartData.map((product, i) => (
-          <CartItem key={i} rowData={product} />
+          <div key={i}>
+            <CartItem product={product} />
+            <Separator className="bg-gray-500" />
+          </div>
         ))}
-      </tbody>
-      <tfoot>
-        <tr>
-          <th scope="row" colSpan="4">
-            Total Amount to Pay (in USA dollar($))
-          </th>
-          <td>
-            {Math.round(
-              myCartData.reduce(
-                (sum, eachProduct) => sum + eachProduct.productAmount,
-                0
-              ) * 100
-            ) / 100}
-          </td>
-        </tr>
-      </tfoot>
-    </table>
+      </div>
+      <div className="cart-checkout w-[30%] bg-gray-400 max-h-fit">
+        <CartSubTotal />
+      </div>
+    </div>
   );
 };
 
