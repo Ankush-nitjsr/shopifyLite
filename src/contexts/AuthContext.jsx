@@ -20,22 +20,15 @@ export default function AuthProvider({ children }) {
     JSON.parse(localStorage.getItem("myCartData")) || []
   );
 
-  const [cartTotalAmount, setCartTotalAmount] = useState(0);
-
   const [cartTotalQuantity, setCartTotalQuantity] = useState(0);
 
   // Recalculate total quantity and amount when cart data changes
   useEffect(() => {
     const totalQuantity = myCartData.reduce(
-      (acc, item) => acc + item.productQuantity,
-      0
-    );
-    const totalAmount = myCartData.reduce(
-      (acc, item) => acc + item.productAmount,
+      (acc, item) => acc + item.quantity,
       0
     );
     setCartTotalQuantity(totalQuantity);
-    setCartTotalAmount(totalAmount);
   }, [myCartData]);
 
   return (
@@ -49,8 +42,6 @@ export default function AuthProvider({ children }) {
         setIsAuthenticated,
         myCartData,
         setMyCartData,
-        cartTotalAmount,
-        setCartTotalAmount,
         cartTotalQuantity,
         setCartTotalQuantity,
       }}
