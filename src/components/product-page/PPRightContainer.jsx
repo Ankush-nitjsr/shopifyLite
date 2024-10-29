@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { productPropTypes } from "../../lib/productPropTypes";
 import { Separator } from "../../ui/separator";
 import { ProductPrice } from "./ProductPrice";
 import { PTitleAndRating } from "./PTitleAndRating";
@@ -101,22 +101,5 @@ export const PPRightContainer = ({ data }) => {
 };
 
 PPRightContainer.propTypes = {
-  data: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    discountPercentage: PropTypes.number,
-    description: PropTypes.string,
-    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-    warrantyInformation: PropTypes.string.isRequired,
-    returnPolicy: PropTypes.string.isRequired,
-    shippingInformation: PropTypes.string.isRequired,
-    availabilityStatus: PropTypes.string.isRequired,
-    minimumOrderQuantity: PropTypes.number.isRequired,
-    meta: PropTypes.shape({
-      createdAt: PropTypes.string.isRequired,
-    }).isRequired,
-    images: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }).isRequired,
+  data: productPropTypes,
 };
