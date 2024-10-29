@@ -8,7 +8,6 @@ import { CartSubTotal } from "./cart-item/CartSubTotal";
 const Cart = () => {
   const { myCartData } = useContext(AuthContext);
   const { setMyCartData } = useContext(AuthContext);
-  const { setCartTotalAmount } = useContext(AuthContext);
   const { setCartTotalQuantity } = useContext(AuthContext);
 
   console.log("cart data", myCartData);
@@ -19,22 +18,15 @@ const Cart = () => {
     if (cartData) {
       // Parse the stored JSON string back to an array
       setMyCartData(JSON.parse(cartData));
-      // calculate total products' amount saved in cart
-      setCartTotalAmount(
-        JSON.parse(cartData).reduce(
-          (sum, eachProduct) => sum + eachProduct.productAmount,
-          0
-        )
-      );
       // calculate total products' quantity saved in cart
       setCartTotalQuantity(
         JSON.parse(cartData).reduce(
-          (sum, eachProduct) => sum + eachProduct.productQuantity,
+          (sum, eachProduct) => sum + eachProduct.quantity,
           0
         )
       );
     }
-  }, [setMyCartData, setCartTotalAmount, setCartTotalQuantity]);
+  }, [setMyCartData, setCartTotalQuantity]);
 
   return (
     <div className="w-full flex gap-8">
