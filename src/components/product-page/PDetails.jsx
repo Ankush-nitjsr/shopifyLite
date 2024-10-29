@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { productPropTypes } from "../../lib/productPropTypes";
 import { PDimensions } from "./PDimensions";
 import { PWeight } from "./PWeight";
 
@@ -25,18 +25,5 @@ export const PDetails = ({ data }) => {
 };
 
 PDetails.propTypes = {
-  data: PropTypes.shape({
-    dimensions: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-      .isRequired,
-    weight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-      .isRequired,
-    brand: PropTypes.string.isRequired,
-    sku: PropTypes.string.isRequired,
-    meta: PropTypes.shape({
-      createdAt: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.instanceOf(Date),
-      ]).isRequired,
-    }).isRequired,
-  }).isRequired,
+  data: productPropTypes,
 };
