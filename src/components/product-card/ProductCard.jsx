@@ -3,15 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
-import PropTypes from "prop-types";
+import { productPropTypes } from "../../lib/productPropTypes";
 
-const ProductCard = ({ productId, title, price, stock, brand, images }) => {
+const ProductCard = ({ product }) => {
   const { myCartData, setMyCartData } = useContext(AuthContext);
-  const navigate = useNavigate(); // Hook for navigation
+
+  // Hook for navigation
+  const navigate = useNavigate();
 
   // Navigate to product details page
   const handleNavigateToProduct = () => {
-    navigate(`/product/${productId}`);
+    navigate(`/product/${product.id}`);
   };
 
   // Update cart
@@ -23,16 +25,9 @@ const ProductCard = ({ productId, title, price, stock, brand, images }) => {
 
   // Add product to cart
   const handleAddToCart = (id) => {
-    if (id === productId) {
-      const productToBeAddedToCart = {
-        productId: id,
-        productPicture: images[0],
-        productName: title,
-        productPrice: price,
-        productQuantity: 1,
-        productAmount: price,
-      };
-      handleUpdateCart([...myCartData, productToBeAddedToCart]);
+    if (id === product.id) {
+      const productToAdd = { ...product, quantity: 1 };
+      handleUpdateCart([...myCartData, productToAdd]);
     }
   };
 
@@ -48,7 +43,7 @@ const ProductCard = ({ productId, title, price, stock, brand, images }) => {
           cursor: "pointer",
         }}
       >
-        <img src={images[0]} alt={title} />
+        <img src={product.images[0]} alt={product.title} />
       </button>
       <div className="details-info space-y-2">
         <button
@@ -56,16 +51,18 @@ const ProductCard = ({ productId, title, price, stock, brand, images }) => {
           onClick={handleNavigateToProduct}
           style={{ background: "none", border: "none", cursor: "pointer" }}
         >
-          {title}
+          {product.title}
         </button>
-        <div className="product-brand font-bold">{brand}</div>
+        <div className="product-brand font-bold">{product.brand}</div>
         <div className="details-action">
           <div className="flex justify-between text-gray-500">
             <div>
-              <div className="text-xl text-[var(--theme)]">Price: ${price}</div>
+              <div className="text-xl text-[var(--theme)]">
+                Price: ${product.price}
+              </div>
               <div>
                 Status:{" "}
-                {stock > 0 ? (
+                {product.stock > 0 ? (
                   <span className="success">In Stock</span>
                 ) : (
                   <span className="error">Unavailable</span>
@@ -75,7 +72,7 @@ const ProductCard = ({ productId, title, price, stock, brand, images }) => {
             <div>
               <button
                 className="addToCart-btn"
-                onClick={() => handleAddToCart(productId)}
+                onClick={() => handleAddToCart(product.id)}
               >
                 Add to Cart
               </button>
@@ -88,12 +85,7 @@ const ProductCard = ({ productId, title, price, stock, brand, images }) => {
 };
 
 ProductCard.propTypes = {
-  productId: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  stock: PropTypes.number.isRequired,
-  brand: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  product: productPropTypes.isRequired,
 };
 
 export default ProductCard;
