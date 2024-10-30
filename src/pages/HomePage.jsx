@@ -60,10 +60,10 @@ const HomePage = () => {
             marginTop: "16rem",
           }}
         >
-          <h1>Loading...</h1>
+          <h1 className="text-3xl">Loading...</h1>
         </div>
       ) : (
-        <div className="px-24">
+        <div className="px-12">
           <form className="search-section" onSubmit={handleSearch}>
             <input
               type="text"
