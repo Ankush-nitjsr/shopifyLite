@@ -136,7 +136,12 @@ const CartItem = ({ product }) => {
             </button>
           </div>
           <Separator orientation="vertical" className="bg-gray-500 h-5" />
-          <button className="text-blue-800">Delete</button>
+          <button
+            className="text-blue-800"
+            onClick={() => handleRemove(product.id)}
+          >
+            Delete
+          </button>
           <Separator orientation="vertical" className="bg-gray-500 h-5" />
           <button className="text-blue-800">Save for later</button>
           <Separator orientation="vertical" className="bg-gray-500 h-5" />
