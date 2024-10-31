@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
 import PrivateRoutes from "./components/PrivateRoutes";
-import LogoutPage from "./pages/LogoutPage";
+import AccountPage from "./pages/AccountPage";
 import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import { ToastContainer } from "react-toastify";
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={!isAuthenticated ? <LoginPage /> : <LogoutPage />}
+            element={!isAuthenticated ? <LoginPage /> : <AccountPage />}
           />
           <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<HomePage />} />
