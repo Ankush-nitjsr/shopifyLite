@@ -44,10 +44,10 @@ const ProductContainer = ({ products }) => {
   return (
     <div className="flex W-full justify-between px-7">
       {/* side filter component */}
-      <div className="py-4 px-2 space-y-3 w-[15%]">
-        <h1 className="text-xl font-semibold">Filters</h1>
+      <div className="py-4 space-y-3 w-[15%]">
+        <h1 className="text-xl font-semibold px-4">Filters</h1>
         <Separator className="bg-gray-500" />
-        <div>
+        <div className="px-4">
           <div className="text-gray-100 flex justify-between">
             <span className="text-lg font-medium">Category</span>
           </div>
@@ -59,7 +59,7 @@ const ProductContainer = ({ products }) => {
             ))}
           </div>
         </div>
-        <div>
+        <div className="px-4">
           <div className="text-gray-100 flex justify-between">
             <span className="text-lg font-medium">Price</span>
           </div>
@@ -84,7 +84,7 @@ const ProductContainer = ({ products }) => {
             </Button>
           </div>
         </div>
-        <div>
+        <div className="px-4">
           <div className="text-gray-100 flex justify-between">
             <span className="text-lg font-medium">Discount</span>
           </div>
@@ -95,7 +95,7 @@ const ProductContainer = ({ products }) => {
             <CheckboxField text={"20% Off or more"} />
           </div>
         </div>
-        <div>
+        <div className="px-4">
           <div className="text-gray-100 flex justify-between">
             <span className="text-lg font-medium">Product Rating</span>
           </div>
