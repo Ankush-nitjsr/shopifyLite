@@ -105,7 +105,7 @@ main {
   color: var(--theme);
 }
 
-.Logout-page {
+.account-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,7 +113,7 @@ main {
   margin: 1rem;
 }
 
-.Logout-page p {
+.account-page p {
   word-break: break-word;
 }
 
