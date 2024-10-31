@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import Header from "../components/Header/Header";
 
-const LogoutPage = () => {
+const AccountPage = () => {
   // Get user details with context hook
   const { userDetails } = useContext(AuthContext);
   const { setUserDetails } = useContext(AuthContext);
@@ -28,7 +28,7 @@ const LogoutPage = () => {
   return (
     <>
       <Header />
-      <div className="Logout-page">
+      <div className="account-page">
         <h1 className="text-yellow-300 m-4 font-bold text-2xl">{`Hello, ${userDetails.firstName} ${userDetails.lastName}!`}</h1>
         <table className="userDetails-table">
           <thead>
@@ -74,4 +74,4 @@ const LogoutPage = () => {
   );
 };
 
-export default LogoutPage;
+export default AccountPage;
