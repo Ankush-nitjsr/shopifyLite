@@ -20,10 +20,11 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={!isAuthenticated ? <LoginPage /> : <AccountPage />}
+            element={!isAuthenticated ? <LoginPage /> : <HomePage />}
           />
           <Route element={<PrivateRoutes />}>
             <Route path="/home" element={<HomePage />} />
+            <Route path="/profile" element={<AccountPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/product/:pid" element={<ProductPage />} />
           </Route>
