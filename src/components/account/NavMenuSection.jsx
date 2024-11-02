@@ -1,17 +1,37 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-export const NavMenuSection = ({ section, setVisibleAccountSection }) => {
-  const { icon: SectionIcon, sectionTitle, subSections } = section;
+export const NavMenuSection = ({
+  section,
+  setVisibleAccountSection,
+  setIsAuthenticated,
+}) => {
+  const {
+    icon: SectionIcon,
+    sectionTitle,
+    path,
+    actionFunction,
+    subSections,
+  } = section;
+
+  // Define the handleClick function
+  const handleClick = () => {
+    if (sectionTitle.toLowerCase() === "logout") {
+      setIsAuthenticated(""); // Clear authentication
+    }
+    actionFunction && actionFunction(); // Execute the actionFunction if defined
+  };
 
   return (
     <div className="px-8 py-4">
       {/* Section Icon */}
       <div className="flex items-center mb-2">
-        <SectionIcon className="w-6 h-6 text-gray-600 mr-2" />
-        <div className="font-semibold text-gray-700 text-base uppercase">
-          {sectionTitle}
-        </div>
+        <Link to={path} onClick={handleClick}>
+          <SectionIcon className="w-6 h-6 text-gray-600 mr-2" />
+          <div className="font-semibold text-gray-700 text-base uppercase">
+            {sectionTitle}
+          </div>
+        </Link>
       </div>
 
       {/* Subsections */}
@@ -39,7 +59,10 @@ NavMenuSection.propTypes = {
   section: PropTypes.shape({
     icon: PropTypes.elementType.isRequired, // A React component (e.g., Icon)
     sectionTitle: PropTypes.string.isRequired, // String for the section title
+    path: PropTypes.string,
+    actionFunction: PropTypes.func,
     subSections: PropTypes.arrayOf(PropTypes.string), // Array of strings for subsections
   }).isRequired,
   setVisibleAccountSection: PropTypes.func, // Function to handle section change
+  setIsAuthenticated: PropTypes.func.isRequired, // Add setIsAuthenticated as required prop
 };
