@@ -24,9 +24,9 @@ export const NavMenuSection = ({
 
   return (
     <div className="px-8 py-4">
-      {/* Section Icon */}
-      <div className="flex items-center mb-2">
-        <Link to={path} onClick={handleClick}>
+      {/* Section Icon & Title */}
+      <div className="mb-2">
+        <Link to={path} onClick={handleClick} className="flex items-center">
           <SectionIcon className="w-6 h-6 text-gray-600 mr-2" />
           <div className="font-semibold text-gray-700 text-base uppercase">
             {sectionTitle}
