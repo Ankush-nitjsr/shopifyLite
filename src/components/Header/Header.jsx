@@ -25,12 +25,17 @@ const Header = () => {
 
   return (
     <header className={isScrolling ? "scrolled" : ""}>
-      <div className="gradient">Header</div>
       <nav>
-        <NavLink to="/profile">Profile Details</NavLink>
-        <NavLink to="/home">Home Page</NavLink>
-        <NavLink to="/cart">Cart ({`${cartTotalQuantity} items`})</NavLink>
-        <NavLink to="/">
+        <NavLink to="/profile" className="nav-link">
+          Profile Details
+        </NavLink>
+        <NavLink to="/home" className="nav-link">
+          Home Page
+        </NavLink>
+        <NavLink to="/cart" className="nav-link">
+          Cart ({`${cartTotalQuantity} items`})
+        </NavLink>
+        <NavLink to="/" className="nav-link">
           {!localStorage.getItem("userDetails") ? "Login" : "Logout"}
         </NavLink>
       </nav>
