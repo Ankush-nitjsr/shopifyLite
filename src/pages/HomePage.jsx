@@ -1,36 +1,15 @@
 import { useEffect, useState } from "react";
 import ProductContainer from "../components/product-container/ProductContainer";
 import Header from "../components/Header/Header";
+import { SearchProduct } from "../components/search-product/SearchProduct";
 
 const HomePage = () => {
   const PRODUCTS_URL = "https://dummyjson.com/products";
 
   const [loading, setLoading] = useState(true);
   const [allProducts, setAllProducts] = useState([]);
-  const [searchName, setSearchName] = useState("");
   const [searchFlag, setSearchFlag] = useState(false);
   const [searchedProducts, setSearchedProducts] = useState([]);
-
-  const findProducts = () => {
-    // Perform search logic and update searchData
-    const filteredProducts = allProducts.filter((product) => {
-      const lowerCaseSearchName = searchName.toLowerCase();
-      return product.title.toLowerCase().includes(lowerCaseSearchName);
-    });
-    if (filteredProducts.length == 0) {
-      setSearchName("");
-      return alert(`Product with name: ${searchName} not found`);
-    } else {
-      setSearchedProducts(filteredProducts);
-      console.log(`searching by ${searchName}`);
-    }
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setSearchFlag(true);
-    findProducts();
-  };
 
   // useEffect to load products when component mounts
   useEffect(() => {
@@ -63,19 +42,15 @@ const HomePage = () => {
           <h1 className="text-3xl">Loading...</h1>
         </div>
       ) : (
-        <div className="px-12">
-          <form className="search-section" onSubmit={handleSearch}>
-            <input
-              type="text"
-              placeholder="Search product by name"
-              value={searchName}
-              onChange={(e) => setSearchName(e.target.value)}
-            />
-            <button type="submit">Search</button>
-          </form>
+        <div className="w-full bg-gray-200 px-2 py-4">
+          <SearchProduct
+            allProducts={allProducts}
+            setSearchFlag={setSearchFlag}
+            setSearchedProducts={setSearchedProducts}
+          />
           {(!searchFlag ? allProducts : searchedProducts).length > 0 ? (
             <ProductContainer
-              products={!searchFlag ? allProducts : searchedProducts || []}
+              products={!searchFlag ? allProducts : searchedProducts}
             />
           ) : (
             <div>No products found.</div>
