@@ -38,14 +38,14 @@ const ProductCard = ({ product }) => {
         onClick={handleNavigateToProduct}
         style={{
           padding: 0,
-          background: "none",
+          background: "#f3f4f6",
           border: "none",
           cursor: "pointer",
         }}
       >
         <img src={product.images[0]} alt={product.title} />
       </button>
-      <div className="details-info space-y-2">
+      <div className="details-info space-y-2 p-2">
         <button
           className="product-title"
           onClick={handleNavigateToProduct}
@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
         </button>
         <div className="product-brand font-bold">{product.brand}</div>
         <div className="details-action">
-          <div className="flex justify-between text-gray-500">
+          <div className="flex justify-between">
             <div>
               <div className="text-xl text-[var(--theme)]">
                 Price: ${product.price}
@@ -63,9 +63,9 @@ const ProductCard = ({ product }) => {
               <div>
                 Status:{" "}
                 {product.stock > 0 ? (
-                  <span className="success">In Stock</span>
+                  <span className="text-green-700">In Stock</span>
                 ) : (
-                  <span className="error">Unavailable</span>
+                  <span className="text-orange-500">Unavailable</span>
                 )}
               </div>
             </div>
