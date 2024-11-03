@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
+  // set state for all products
+  const [products, setProducts] = useState([]);
+  // set state for filters
+  const [filter, setFilter] = useState("");
   // set state for username and password
   const [user, setUser] = useState({ username: "", password: "" });
 
@@ -34,6 +38,10 @@ export default function AuthProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{
+        products,
+        setProducts,
+        filter,
+        setFilter,
         user,
         setUser,
         userDetails,
