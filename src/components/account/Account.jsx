@@ -16,7 +16,7 @@ export const Account = () => {
     setUserDetails(JSON.parse(localStorage.getItem("userDetails")));
   }, [setUserDetails]);
   return (
-    <div className="user-account flex w-full bg-gray-200 space-x-5 px-2 py-6 justify-center text-gray-900">
+    <div className="user-account flex w-full bg-gray-200 space-x-5 px-2 py-6 justify-center text-black">
       <div className="left-container w-[20%] space-y-5">
         <UserModal user={userDetails} />
         <AccountNavMenu setVisibleAccountSection={setVisibleAccountSection} />
