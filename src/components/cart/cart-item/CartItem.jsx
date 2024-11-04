@@ -60,7 +60,7 @@ const CartItem = ({ product }) => {
   };
 
   return (
-    <div className="flex justify-between bg-gray-400 p-4 h-56 w-full">
+    <div className="flex justify-between bg-white p-4 h-56 w-full">
       <div className="ci-checkbox flex items-center justify-center w-[2%]">
         <Checkbox />
       </div>
@@ -96,7 +96,7 @@ const CartItem = ({ product }) => {
           <div className="ci-price-wrapper flex flex-col space-y-2">
             <div className="flex flex-col space-x-2">
               <div className="discount flex justify-end">
-                <span className="text-gray-100 p-1 rounded bg-red-800">
+                <span className="text-gray-100 p-1 rounded bg-red-700">
                   {-product.discountPercentage}%
                 </span>
               </div>
