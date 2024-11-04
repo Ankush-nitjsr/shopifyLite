@@ -20,7 +20,7 @@ export const CartSubTotal = () => {
     { totalPrice: 0, totalQuantity: 0, totalDiscount: 0 }
   );
   return (
-    <div className="px-6 py-4 space-y-3">
+    <div className="bg-white cart-checkout w-[20%] px-6 py-4 space-y-3 shadow-lg rounded-lg max-h-fit">
       <h1 className="text-xl font-semibold text-gray-600">PRICE DETAILS</h1>
       <Separator className="bg-gray-500" />
       <div className="text-gray-900 flex justify-between">
