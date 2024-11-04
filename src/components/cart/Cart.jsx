@@ -29,18 +29,17 @@ const Cart = () => {
   }, [setMyCartData, setCartTotalQuantity]);
 
   return (
-    <div className="w-full flex gap-8">
-      <div className="cart-items w-[70%] bg-gray-400 p-4">
+    <div className="w-full flex justify-center gap-6">
+      <div className="cart-items w-[60%] bg-white shadow-lg rounded-lg p-2">
         {myCartData.map((product, i) => (
           <div key={i}>
             <CartItem product={product} />
-            <Separator className="bg-gray-500" />
+            <Separator className="bg-gray-200" />
           </div>
         ))}
       </div>
-      <div className="cart-checkout w-[30%] bg-gray-400 max-h-fit">
-        <CartSubTotal />
-      </div>
+      {/* Component for Cart total amount at checkout */}
+      <CartSubTotal />
     </div>
   );
 };
