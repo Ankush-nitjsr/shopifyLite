@@ -3,9 +3,9 @@ import Cart from "../components/cart/Cart";
 
 const CartPage = () => {
   return (
-    <div className="px-14">
+    <div className="">
       <Header />
-      <main className="p-7 bg-gray-500">
+      <main className="p-6 bg-gray-200">
         <Cart />
       </main>
     </div>
