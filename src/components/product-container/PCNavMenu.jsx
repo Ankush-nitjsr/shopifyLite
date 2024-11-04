@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Separator } from "../../ui/separator";
 import { CheckboxField } from "../../ui/CheckboxField";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
@@ -95,5 +96,5 @@ export const PCNavMenu = ({ products }) => {
 };
 
 PCNavMenu.propTypes = {
-  products: productPropTypes,
+  products: PropTypes.arrayOf(productPropTypes),
 };
