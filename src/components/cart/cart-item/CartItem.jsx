@@ -1,6 +1,6 @@
 import "./styles.css";
 import { useContext } from "react";
-import { AuthContext } from "../../../contexts/AuthContext";
+import { ProductContext } from "../../../contexts/ProductContext";
 import {
   MinusCircleIcon,
   PlusCircleIcon,
@@ -14,7 +14,7 @@ import { CheckboxField } from "../../../ui/CheckboxField";
 import { productPropTypes } from "../../../lib/productPropTypes";
 
 const CartItem = ({ product }) => {
-  const { myCartData, setMyCartData } = useContext(AuthContext);
+  const { myCartData, setMyCartData } = useContext(ProductContext);
 
   const handleIncrease = (id) => {
     let qty = product.quantity;
