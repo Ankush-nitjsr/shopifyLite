@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { ProductContext } from "../../contexts/ProductContext";
 import "./styles.css";
 
 const Header = () => {
-  const { cartTotalQuantity } = useContext(AuthContext);
+  const { cartTotalQuantity } = useContext(ProductContext);
   const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
