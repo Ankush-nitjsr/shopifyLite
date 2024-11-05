@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetProduct } from "./useGetProduct";
+import { useGetProduct } from "../../hooks/useGetProduct";
 import Header from "../Header/Header";
 import { PPLeftContainer } from "./PPLeftContainer";
 import { PPRightContainer } from "./PPRightContainer";
