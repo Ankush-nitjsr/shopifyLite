@@ -11,11 +11,11 @@ import { ArrowUturnLeftIcon } from "@heroicons/react/20/solid";
 import { CheckboxField } from "../../ui/CheckboxField";
 import { PDetails } from "./PDetails";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { ProductContext } from "../../contexts/ProductContext";
 import { toast } from "react-toastify";
 
 export const PPRightContainer = ({ data }) => {
-  const { myCartData, setMyCartData } = useContext(AuthContext);
+  const { myCartData, setMyCartData } = useContext(ProductContext);
 
   // Update cart
   const handleUpdateCart = (newCartData) => {
