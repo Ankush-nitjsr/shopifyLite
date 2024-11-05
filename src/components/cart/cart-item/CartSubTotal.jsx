@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { AuthContext } from "../../../contexts/AuthContext";
+import { ProductContext } from "../../../contexts/ProductContext";
 import { CheckboxField } from "../../../ui/CheckboxField";
 import { PButton } from "../../product-page/PButton";
 import { Separator } from "../../../ui/separator";
 
 export const CartSubTotal = () => {
-  const { myCartData } = useContext(AuthContext);
+  const { myCartData } = useContext(ProductContext);
   const { totalPrice, totalQuantity, totalDiscount } = myCartData.reduce(
     (accumulator, product) => {
       const productPrice =
