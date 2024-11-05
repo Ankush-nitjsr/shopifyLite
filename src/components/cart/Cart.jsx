@@ -1,14 +1,14 @@
 import { useContext, useEffect } from "react";
 import "./styles.css";
-import { AuthContext } from "../../contexts/AuthContext";
+import { ProductContext } from "../../contexts/ProductContext";
 import CartItem from "./cart-item/CartItem";
 import { Separator } from "../../ui/separator";
 import { CartSubTotal } from "./cart-item/CartSubTotal";
 
 const Cart = () => {
-  const { myCartData } = useContext(AuthContext);
-  const { setMyCartData } = useContext(AuthContext);
-  const { setCartTotalQuantity } = useContext(AuthContext);
+  const { myCartData } = useContext(ProductContext);
+  const { setMyCartData } = useContext(ProductContext);
+  const { setCartTotalQuantity } = useContext(ProductContext);
 
   console.log("cart data", myCartData);
 
