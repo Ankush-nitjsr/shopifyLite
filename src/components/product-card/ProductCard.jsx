@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
-import { AuthContext } from "../../contexts/AuthContext";
+import { ProductContext } from "../../contexts/ProductContext";
 import { toast } from "react-toastify";
 import { productPropTypes } from "../../lib/productPropTypes";
 
 const ProductCard = ({ product }) => {
-  const { myCartData, setMyCartData } = useContext(AuthContext);
+  const { myCartData, setMyCartData } = useContext(ProductContext);
 
   // Hook for navigation
   const navigate = useNavigate();
