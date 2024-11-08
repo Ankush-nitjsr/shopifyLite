@@ -5,11 +5,9 @@ function LoginPage() {
   return (
     <>
       <Header />
-      <main>
-        <div className="flex flex-col justify-center items-center w-full max-w-md">
-          <LoginForm />
-        </div>
-      </main>
+      <div className="flex justify-center items-center min-h-[calc(100vh-80px)] bg-gray-100">
+        <LoginForm />
+      </div>
     </>
   );
 }
