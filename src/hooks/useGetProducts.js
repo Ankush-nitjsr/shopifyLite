@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useGetProducts = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [pagination, setPagination] = useState({
