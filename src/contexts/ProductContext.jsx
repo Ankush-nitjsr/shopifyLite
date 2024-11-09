@@ -11,6 +11,7 @@ export function ProductProvider({ children }) {
   );
   const [cartTotalQuantity, setCartTotalQuantity] = useState(0);
 
+  // Update cart quantity whenever myCartData changes
   useEffect(() => {
     const totalQuantity = myCartData.reduce(
       (acc, item) => acc + item.quantity,
@@ -19,6 +20,7 @@ export function ProductProvider({ children }) {
     setCartTotalQuantity(totalQuantity);
   }, [myCartData]);
 
+  // Memoize value to prevent unnecessary re-renders
   const value = useMemo(
     () => ({
       products,
