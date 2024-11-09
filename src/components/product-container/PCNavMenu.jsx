@@ -1,15 +1,30 @@
-import PropTypes from "prop-types";
 import { Separator } from "../../ui/separator";
 import { CheckboxField } from "../../ui/CheckboxField";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 import Button from "../../ui/buttons/Button";
-import { productPropTypes } from "../../lib/productPropTypes";
+import { useContext, useEffect } from "react";
+import { ProductContext } from "../../contexts/ProductContext";
+import { useGetProducts } from "../../hooks/useGetProducts";
+import { useFilterProducts } from "../../hooks/useFilterProducts";
 
-export const PCNavMenu = ({ products }) => {
+export const PCNavMenu = () => {
   // Get all products
+  const { data } = useGetProducts();
 
-  // Get all categories
-  const categories = [...new Set(products.map((product) => product.category))];
+  // Get filtered products
+  const { newFilteredProducts } = useFilterProducts();
+
+  // Use context to filter products
+  const { setFilter, setProducts } = useContext(ProductContext);
+
+  // Make sure data exists before using it
+  const categories = data
+    ? [...new Set(data.map((product) => product.category))]
+    : [];
+
+  useEffect(() => {
+    setProducts(newFilteredProducts);
+  }, [newFilteredProducts, setProducts]);
 
   return (
     <div className="py-6 px-6 w-[16%] bg-white shadow-lg rounded-lg text-black max-h-fit">
@@ -22,14 +37,22 @@ export const PCNavMenu = ({ products }) => {
           <span className="text-lg font-medium">Category</span>
         </div>
         <ul className="space-y-2">
-          {categories.map((category) => (
-            <li
-              key={category}
-              className="text-base hover:text-blue-500 cursor-pointer transition duration-200"
-            >
-              {capitalizeFirstLetter(category)}
-            </li>
-          ))}
+          {categories.length > 0 ? (
+            categories.map((category) => (
+              <Button
+                onClick={() => setFilter(category)}
+                variant="outline"
+                className="cursor-pointer"
+                key={category}
+              >
+                <li className="text-base hover:text-blue-500 transition duration-200">
+                  {capitalizeFirstLetter(category)}
+                </li>
+              </Button>
+            ))
+          ) : (
+            <li>No categories available</li>
+          )}
         </ul>
       </div>
 
@@ -93,8 +116,4 @@ export const PCNavMenu = ({ products }) => {
       </div>
     </div>
   );
-};
-
-PCNavMenu.propTypes = {
-  products: PropTypes.arrayOf(productPropTypes),
 };
