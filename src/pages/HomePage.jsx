@@ -19,8 +19,6 @@ const HomePage = () => {
       if (JSON.stringify(products) !== JSON.stringify(data)) {
         setProducts(data);
       }
-    } else {
-      console.log("No products set, data or filter might be empty.");
     }
   }, [data, products, setProducts]);
 
@@ -55,13 +53,7 @@ const HomePage = () => {
             : searchedProducts
           ).length > 0 ? (
             <ProductContainer
-              products={
-                !searchFlag
-                  ? products.length > 0
-                    ? products
-                    : data
-                  : searchedProducts
-              }
+              productsData={!searchFlag ? data : searchedProducts}
             />
           ) : (
             <div className="h-40 mx-auto mt-4 w-[83%] flex justify-center items-center bg-white p-4 shadow-lg rounded-lg text-gray-500 text-xl">
