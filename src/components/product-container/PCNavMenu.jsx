@@ -2,7 +2,7 @@ import { Separator } from "../../ui/separator";
 import { CheckboxField } from "../../ui/CheckboxField";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 import Button from "../../ui/buttons/Button";
-import { useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { useFilterProducts } from "../../hooks/useFilterProducts";
@@ -22,8 +22,24 @@ export const PCNavMenu = () => {
     ? [...new Set(data.map((product) => product.category))]
     : [];
 
+  // Use useCallback to memoize the setFilter function for the category buttons
+  const handleCategoryClick = useCallback(
+    (category) => {
+      setFilter(category);
+    },
+    [setFilter]
+  );
+
   useEffect(() => {
-    setProducts(newFilteredProducts);
+    // Avoid setting the same products repeatedly
+    setProducts((prevProducts) => {
+      if (
+        JSON.stringify(prevProducts) !== JSON.stringify(newFilteredProducts)
+      ) {
+        return newFilteredProducts;
+      }
+      return prevProducts;
+    });
   }, [newFilteredProducts, setProducts]);
 
   return (
@@ -40,7 +56,7 @@ export const PCNavMenu = () => {
           {categories.length > 0 ? (
             categories.map((category) => (
               <Button
-                onClick={() => setFilter(category)}
+                onClick={() => handleCategoryClick(category)}
                 variant="outline"
                 className="cursor-pointer"
                 key={category}
