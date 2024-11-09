@@ -12,7 +12,7 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const { setIsAuthenticated, setUser } = useContext(AuthContext);
+  const { setIsAuthenticated, setUserDetails } = useContext(AuthContext);
   const navigate = useNavigate();
   const URL_FOR_LOGIN = "https://dummyjson.com/auth/login";
 
@@ -35,7 +35,7 @@ export const LoginForm = () => {
       localStorage.setItem("userDetails", JSON.stringify(result));
       localStorage.setItem("token", result.token);
       setIsAuthenticated(true);
-      setUser(result.user); // Assuming result contains user data
+      setUserDetails(result);
       toast.success("LogIn Successful!");
       navigate("/home");
     } catch (error) {
