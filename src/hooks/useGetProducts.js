@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 export const useGetProducts = () => {
   const [data, setData] = useState([]);
@@ -41,5 +41,8 @@ export const useGetProducts = () => {
     fetchProducts();
   }, []);
 
-  return { data, loading, error, pagination };
+  // Memoize the data to prevent re-renders unless data changes
+  const memoizedData = useMemo(() => data, [data]);
+
+  return { data: memoizedData, loading, error, pagination };
 };
