@@ -14,7 +14,7 @@ export const useFilterProducts = () => {
 
     // Filter products based on the filter text being present in product names
     return products.filter(
-      (product) => product?.name?.toLowerCase().includes(filter.toLowerCase()) // Ensure safe access and case-insensitive filtering
+      (product) => product?.category?.toLowerCase() === filter.toLowerCase() // Ensure safe access and case-insensitive filtering
     );
   }, [products, filter]); // Ensure proper dependencies
 
