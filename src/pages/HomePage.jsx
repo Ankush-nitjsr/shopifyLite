@@ -42,7 +42,7 @@ const HomePage = () => {
       ) : (
         <div className="w-full bg-gray-200 px-2 py-4 min-h-screen">
           <SearchProduct
-            allProducts={products.length > 0 ? products : data}
+            allProducts={data}
             setSearchFlag={setSearchFlag}
             setSearchedProducts={setSearchedProducts}
           />
