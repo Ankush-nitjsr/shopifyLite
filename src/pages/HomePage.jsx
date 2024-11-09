@@ -4,28 +4,35 @@ import Header from "../components/Header/Header";
 import { SearchProduct } from "../components/search-product/SearchProduct";
 import { ProductContext } from "../contexts/ProductContext";
 import { useGetProducts } from "../hooks/useGetProducts";
+import { useFilterProducts } from "../hooks/useFilterProducts";
 
 const HomePage = () => {
-  // Get all products
-  const { data } = useGetProducts();
-
-  // Get products from product context
-  const { products, setProducts } = useContext(ProductContext);
-
-  const [loading, setLoading] = useState(true);
+  const { data, loading } = useGetProducts();
+  const { products, setProducts, filter } = useContext(ProductContext);
+  const { newFilteredProducts } = useFilterProducts();
   const [searchFlag, setSearchFlag] = useState(false);
   const [searchedProducts, setSearchedProducts] = useState([]);
 
-  // useEffect to load products when component mounts
+  // Set products only when the data changes
   useEffect(() => {
-    if (data) {
-      console.log("Setting products:", data); // Add this log to check the data being set
-      setProducts(data);
-      setLoading(false); // Set loading to false after setting products
+    if (filter.length > 0) {
+      // Set products from filtered products only when filter is active
+      console.log("Setting filtered products:", newFilteredProducts);
+      setProducts(newFilteredProducts);
+    } else if (data.length > 0 && products.length === 0) {
+      // Set products only if data is available and products are empty
+      console.log("Setting products from data:", data);
+      if (JSON.stringify(products) !== JSON.stringify(data)) {
+        setProducts(data);
+      }
+    } else {
+      console.log("No products set, data or filter might be empty.");
     }
-  }, []);
+  }, [data, filter, newFilteredProducts, products, setProducts]);
 
+  console.log("data @ HomePage:", data);
   console.log("products @ HomePage:", products);
+  console.log("Filter length: ", filter.length);
 
   return (
     <>
@@ -44,13 +51,24 @@ const HomePage = () => {
       ) : (
         <div className="w-full bg-gray-200 px-2 py-4 min-h-screen">
           <SearchProduct
-            allProducts={products || []} // Ensure products is an array
+            allProducts={filter.length > 0 ? products : data}
             setSearchFlag={setSearchFlag}
             setSearchedProducts={setSearchedProducts}
           />
-          {(!searchFlag ? products : searchedProducts).length > 0 ? (
+          {(!searchFlag
+            ? filter.length > 0
+              ? products
+              : data
+            : searchedProducts
+          ).length > 0 ? (
             <ProductContainer
-              products={!searchFlag ? products : searchedProducts}
+              products={
+                !searchFlag
+                  ? filter.length > 0
+                    ? products
+                    : data
+                  : searchedProducts
+              }
             />
           ) : (
             <div className="h-40 mx-auto mt-4 w-[83%] flex justify-center items-center bg-white p-4 shadow-lg rounded-lg text-gray-500 text-xl">
