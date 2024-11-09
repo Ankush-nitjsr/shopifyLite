@@ -4,22 +4,16 @@ import Header from "../components/Header/Header";
 import { SearchProduct } from "../components/search-product/SearchProduct";
 import { ProductContext } from "../contexts/ProductContext";
 import { useGetProducts } from "../hooks/useGetProducts";
-import { useFilterProducts } from "../hooks/useFilterProducts";
 
 const HomePage = () => {
   const { data, loading } = useGetProducts();
-  const { products, setProducts, filter } = useContext(ProductContext);
-  const { newFilteredProducts } = useFilterProducts();
+  const { products, setProducts } = useContext(ProductContext);
   const [searchFlag, setSearchFlag] = useState(false);
   const [searchedProducts, setSearchedProducts] = useState([]);
 
   // Set products only when the data changes
   useEffect(() => {
-    if (filter.length > 0) {
-      // Set products from filtered products only when filter is active
-      console.log("Setting filtered products:", newFilteredProducts);
-      setProducts(newFilteredProducts);
-    } else if (data.length > 0 && products.length === 0) {
+    if (data.length > 0 && products.length === 0) {
       // Set products only if data is available and products are empty
       console.log("Setting products from data:", data);
       if (JSON.stringify(products) !== JSON.stringify(data)) {
@@ -28,11 +22,10 @@ const HomePage = () => {
     } else {
       console.log("No products set, data or filter might be empty.");
     }
-  }, [data, filter, newFilteredProducts, products, setProducts]);
+  }, [data, products, setProducts]);
 
   console.log("data @ HomePage:", data);
   console.log("products @ HomePage:", products);
-  console.log("Filter length: ", filter.length);
 
   return (
     <>
@@ -51,12 +44,12 @@ const HomePage = () => {
       ) : (
         <div className="w-full bg-gray-200 px-2 py-4 min-h-screen">
           <SearchProduct
-            allProducts={filter.length > 0 ? products : data}
+            allProducts={products.length > 0 ? products : data}
             setSearchFlag={setSearchFlag}
             setSearchedProducts={setSearchedProducts}
           />
           {(!searchFlag
-            ? filter.length > 0
+            ? products.length > 0
               ? products
               : data
             : searchedProducts
@@ -64,7 +57,7 @@ const HomePage = () => {
             <ProductContainer
               products={
                 !searchFlag
-                  ? filter.length > 0
+                  ? products.length > 0
                     ? products
                     : data
                   : searchedProducts
