@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard from "../product-card/ProductCard";
 import "./styles.css";
-import PropTypes from "prop-types";
-import { productPropTypes } from "../../lib/productPropTypes";
 import { PCNavMenu } from "./PCNavMenu";
+import { ProductContext } from "../../contexts/ProductContext";
+import { productPropTypes } from "../../lib/productPropTypes";
 
-const ProductContainer = ({ products }) => {
-  const [filteredProducts, setFilteredProducts] = useState([]);
+const ProductContainer = ({ productsData }) => {
+  const { products, setProducts, setFilter } = useContext(ProductContext);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
@@ -19,21 +19,22 @@ const ProductContainer = ({ products }) => {
       const filteredData = products.filter(
         (product) => product.price >= min && product.price <= max
       );
-      setFilteredProducts(filteredData);
+      setProducts(filteredData);
     } else {
-      setFilteredProducts(products);
+      setProducts(productsData);
     }
   };
 
   const clearFilter = () => {
     setMinPrice("");
     setMaxPrice("");
-    setFilteredProducts(products);
+    setFilter("");
+    setProducts(productsData);
   };
 
   useEffect(() => {
-    setFilteredProducts(products);
-  }, [setFilteredProducts, products]);
+    setProducts(productsData);
+  }, [productsData, setProducts]);
 
   return (
     <div className="flex W-full justify-between px-7 py-4 bg-gray-200">
@@ -69,7 +70,7 @@ const ProductContainer = ({ products }) => {
           </div>
         </div>
         <div className="product-container">
-          {filteredProducts.map((product) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -79,7 +80,7 @@ const ProductContainer = ({ products }) => {
 };
 
 ProductContainer.propTypes = {
-  products: PropTypes.arrayOf(productPropTypes),
+  productsData: productPropTypes,
 };
 
 export default ProductContainer;
