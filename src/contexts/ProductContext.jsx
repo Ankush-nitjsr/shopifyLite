@@ -5,7 +5,13 @@ export const ProductContext = createContext();
 
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [priceFilter, setPriceFilter] = useState({
+    startPrice: 0,
+    endPrice: 0,
+  });
+  const [discountFilter, setDiscountFilter] = useState("");
+  const [ratingFilter, setRatingFilter] = useState("");
   const [myCartData, setMyCartData] = useState(
     () => JSON.parse(localStorage.getItem("myCartData")) || []
   );
@@ -25,14 +31,28 @@ export function ProductProvider({ children }) {
     () => ({
       products,
       setProducts,
-      filter,
-      setFilter,
+      categoryFilter,
+      setCategoryFilter,
+      priceFilter,
+      setPriceFilter,
+      discountFilter,
+      setDiscountFilter,
+      ratingFilter,
+      setRatingFilter,
       myCartData,
       setMyCartData,
       cartTotalQuantity,
       setCartTotalQuantity,
     }),
-    [products, filter, myCartData, cartTotalQuantity]
+    [
+      products,
+      categoryFilter,
+      priceFilter,
+      discountFilter,
+      ratingFilter,
+      myCartData,
+      cartTotalQuantity,
+    ]
   );
 
   return (
