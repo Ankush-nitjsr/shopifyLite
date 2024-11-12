@@ -11,16 +11,11 @@ const HomePage = () => {
   const [searchFlag, setSearchFlag] = useState(false);
   const [searchedProducts, setSearchedProducts] = useState([]);
 
-  // Set products only when the data changes
   useEffect(() => {
-    if (data.length > 0 && products.length === 0) {
-      // Set products only if data is available and products are empty
-      console.log("Setting products from data:", data);
-      if (JSON.stringify(products) !== JSON.stringify(data)) {
-        setProducts(data);
-      }
+    if (data.length > 0) {
+      setProducts(data);
     }
-  }, [data, products, setProducts]);
+  }, [data, setProducts]);
 
   console.log("data @ HomePage:", data);
   console.log("products @ HomePage:", products);
@@ -53,7 +48,7 @@ const HomePage = () => {
             : searchedProducts
           ).length > 0 ? (
             <ProductContainer
-              productsData={!searchFlag ? data : searchedProducts}
+              productsData={!searchFlag ? products : searchedProducts}
             />
           ) : (
             <div className="h-40 mx-auto mt-4 w-[83%] flex justify-center items-center bg-white p-4 shadow-lg rounded-lg text-gray-500 text-xl">
