@@ -12,7 +12,7 @@ export const PCNavMenu = () => {
   const { data } = useGetProducts();
 
   // Use context to filter products
-  const { categoryFilter, setCategoryFilter, setProducts } =
+  const { setProducts, categoryFilter, setCategoryFilter, setPriceFilter } =
     useContext(ProductContext);
 
   // Get filtered products
@@ -37,9 +37,25 @@ export const PCNavMenu = () => {
   const handlePriceClick = (element) => {
     switch (element.innerText) {
       case "Under $50":
+        setPriceFilter({ startPrice: 0, endPrice: 50 });
         break;
-
+      case "$50 - $100":
+        setPriceFilter({ startPrice: 50, endPrice: 100 });
+        break;
+      case "$100 - $250":
+        setPriceFilter({ startPrice: 100, endPrice: 250 });
+        break;
+      case "$250 - $500":
+        setPriceFilter({ startPrice: 250, endPrice: 500 });
+        break;
+      case "$500 - $1000":
+        setPriceFilter({ startPrice: 500, endPrice: 1000 });
+        break;
+      case "Over $1000":
+        setPriceFilter({ startPrice: 1000, endPrice: Infinity });
+        break;
       default:
+        setPriceFilter({});
         break;
     }
   };
