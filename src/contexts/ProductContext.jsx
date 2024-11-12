@@ -6,10 +6,7 @@ export const ProductContext = createContext();
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState("");
-  const [priceFilter, setPriceFilter] = useState({
-    startPrice: 0,
-    endPrice: 0,
-  });
+  const [priceFilter, setPriceFilter] = useState({});
   const [discountFilter, setDiscountFilter] = useState("");
   const [ratingFilter, setRatingFilter] = useState("");
   const [myCartData, setMyCartData] = useState(
