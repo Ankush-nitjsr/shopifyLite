@@ -2,7 +2,7 @@ import { Separator } from "../../ui/separator";
 import { CheckboxField } from "../../ui/CheckboxField";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 import Button from "../../ui/buttons/Button";
-import { useCallback, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { useFilterProducts } from "../../hooks/useFilterProducts";
@@ -11,36 +11,36 @@ export const PCNavMenu = () => {
   // Get all products
   const { data } = useGetProducts();
 
-  // Get filtered products
-  const { newFilteredProducts } = useFilterProducts();
-
   // Use context to filter products
-  const { setFilter, setProducts } = useContext(ProductContext);
+  const { categoryFilter, setCategoryFilter, setProducts } =
+    useContext(ProductContext);
+
+  // Get filtered products
+  const newFilteredProducts = useFilterProducts(data);
 
   // Make sure data exists before using it
   const categories = data
     ? [...new Set(data.map((product) => product.category))]
     : [];
 
-  // Use useCallback to memoize the setFilter function for the category buttons
-  const handleCategoryClick = useCallback(
-    (category) => {
-      setFilter(category);
-    },
-    [setFilter]
-  );
-
   useEffect(() => {
     // Avoid setting the same products repeatedly
-    setProducts((prevProducts) => {
-      if (
-        JSON.stringify(prevProducts) !== JSON.stringify(newFilteredProducts)
-      ) {
-        return newFilteredProducts;
-      }
-      return prevProducts;
-    });
-  }, [newFilteredProducts, setProducts]);
+    setProducts(newFilteredProducts);
+  }, [categoryFilter, newFilteredProducts, setProducts]);
+
+  const handleCategoryClick = (category) => {
+    setCategoryFilter(category);
+  };
+
+  const handlePriceClick = (element) => {
+    switch (element.innerText) {
+      case "Under $50":
+        break;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="py-6 px-6 w-[16%] bg-white shadow-lg rounded-lg text-black max-h-fit">
@@ -80,22 +80,46 @@ export const PCNavMenu = () => {
           <span className="text-lg font-medium">Price</span>
         </div>
         <div className="space-y-2 flex flex-col items-start">
-          <Button variant="link" size="lg">
+          <Button
+            onClick={(e) => handlePriceClick(e.target)}
+            variant="link"
+            size="lg"
+          >
             Under $50
           </Button>
-          <Button variant="link" size="lg">
+          <Button
+            onClick={(e) => handlePriceClick(e.target)}
+            variant="link"
+            size="lg"
+          >
             $50 - $100
           </Button>
-          <Button variant="link" size="sm">
+          <Button
+            onClick={(e) => handlePriceClick(e.target)}
+            variant="link"
+            size="sm"
+          >
             $100 - $250
           </Button>
-          <Button variant="link" size="sm">
+          <Button
+            onClick={(e) => handlePriceClick(e.target)}
+            variant="link"
+            size="sm"
+          >
             $250 - $500
           </Button>
-          <Button variant="link" size="sm">
+          <Button
+            onClick={(e) => handlePriceClick(e.target)}
+            variant="link"
+            size="sm"
+          >
             $500 - $1000
           </Button>
-          <Button variant="link" size="sm">
+          <Button
+            onClick={(e) => handlePriceClick(e.target)}
+            variant="link"
+            size="sm"
+          >
             Over $1000
           </Button>
         </div>
