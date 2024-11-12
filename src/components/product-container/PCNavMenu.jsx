@@ -6,7 +6,7 @@ import { useContext, useEffect } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { useFilterProducts } from "../../hooks/useFilterProducts";
-import { priceRanges } from "./constants";
+import { discounts, priceRanges, ratings } from "./constants";
 
 export const PCNavMenu = () => {
   // Get all products
@@ -106,10 +106,9 @@ export const PCNavMenu = () => {
           <span className="text-lg font-medium">Discount</span>
         </div>
         <div className="space-y-3">
-          <CheckboxField text={"5% Off or more"} />
-          <CheckboxField text={"10% Off or more"} />
-          <CheckboxField text={"15% Off or more"} />
-          <CheckboxField text={"20% Off or more"} />
+          {discounts.map((discount) => (
+            <CheckboxField key={discount.label} text={discount.label} />
+          ))}
         </div>
       </div>
 
@@ -121,10 +120,9 @@ export const PCNavMenu = () => {
           <span className="text-lg font-medium">Product Rating</span>
         </div>
         <div className="space-y-3">
-          <CheckboxField text={"1 ⭐ & above"} />
-          <CheckboxField text={"2 ⭐ & above"} />
-          <CheckboxField text={"3 ⭐ & above"} />
-          <CheckboxField text={"4 ⭐ & above"} />
+          {ratings.map((rating) => (
+            <CheckboxField key={rating.label} text={rating.label} />
+          ))}
         </div>
       </div>
     </div>
