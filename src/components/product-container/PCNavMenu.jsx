@@ -25,7 +25,9 @@ export const PCNavMenu = () => {
 
   useEffect(() => {
     // Avoid setting the same products repeatedly
-    setProducts(newFilteredProducts);
+    if (newFilteredProducts?.length) {
+      setProducts(newFilteredProducts);
+    }
   }, [categoryFilter, newFilteredProducts, setProducts]);
 
   const handleCategoryClick = (category) => {
