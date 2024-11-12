@@ -34,29 +34,25 @@ export const PCNavMenu = () => {
     setCategoryFilter(category);
   };
 
-  const handlePriceClick = (element) => {
-    switch (element.innerText) {
-      case "Under $50":
-        setPriceFilter({ startPrice: 0, endPrice: 50 });
-        break;
-      case "$50 - $100":
-        setPriceFilter({ startPrice: 50, endPrice: 100 });
-        break;
-      case "$100 - $250":
-        setPriceFilter({ startPrice: 100, endPrice: 250 });
-        break;
-      case "$250 - $500":
-        setPriceFilter({ startPrice: 250, endPrice: 500 });
-        break;
-      case "$500 - $1000":
-        setPriceFilter({ startPrice: 500, endPrice: 1000 });
-        break;
-      case "Over $1000":
-        setPriceFilter({ startPrice: 1000, endPrice: Infinity });
-        break;
-      default:
-        setPriceFilter({});
-        break;
+  // Optimized price filter ranges
+  const priceRanges = [
+    { label: "Under $50", startPrice: 0, endPrice: 50 },
+    { label: "$50 - $100", startPrice: 50, endPrice: 100 },
+    { label: "$100 - $250", startPrice: 100, endPrice: 250 },
+    { label: "$250 - $500", startPrice: 250, endPrice: 500 },
+    { label: "$500 - $1000", startPrice: 500, endPrice: 1000 },
+    { label: "Over $1000", startPrice: 1000, endPrice: Infinity },
+  ];
+
+  const handlePriceClick = (label) => {
+    const selectedRange = priceRanges.find((range) => range.label === label);
+    if (selectedRange) {
+      setPriceFilter({
+        startPrice: selectedRange.startPrice,
+        endPrice: selectedRange.endPrice,
+      });
+    } else {
+      setPriceFilter({});
     }
   };
 
@@ -98,48 +94,16 @@ export const PCNavMenu = () => {
           <span className="text-lg font-medium">Price</span>
         </div>
         <div className="space-y-2 flex flex-col items-start">
-          <Button
-            onClick={(e) => handlePriceClick(e.target)}
-            variant="link"
-            size="lg"
-          >
-            Under $50
-          </Button>
-          <Button
-            onClick={(e) => handlePriceClick(e.target)}
-            variant="link"
-            size="lg"
-          >
-            $50 - $100
-          </Button>
-          <Button
-            onClick={(e) => handlePriceClick(e.target)}
-            variant="link"
-            size="sm"
-          >
-            $100 - $250
-          </Button>
-          <Button
-            onClick={(e) => handlePriceClick(e.target)}
-            variant="link"
-            size="sm"
-          >
-            $250 - $500
-          </Button>
-          <Button
-            onClick={(e) => handlePriceClick(e.target)}
-            variant="link"
-            size="sm"
-          >
-            $500 - $1000
-          </Button>
-          <Button
-            onClick={(e) => handlePriceClick(e.target)}
-            variant="link"
-            size="sm"
-          >
-            Over $1000
-          </Button>
+          {priceRanges.map((range) => (
+            <Button
+              key={range.label}
+              onClick={() => handlePriceClick(range.label)}
+              variant="link"
+              size="lg"
+            >
+              {range.label}
+            </Button>
+          ))}
         </div>
       </div>
 
