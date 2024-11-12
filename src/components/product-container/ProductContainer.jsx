@@ -8,8 +8,8 @@ import { productPropTypes } from "../../lib/productPropTypes";
 import { PriceFilter } from "./PriceFilter";
 
 const ProductContainer = ({ productsData }) => {
-  const { products, setProducts } = useContext(ProductContext);
-  console.log("Products @ PC: ", products);
+  const { setProducts } = useContext(ProductContext);
+  console.log("Products @ PC: ", productsData);
 
   useEffect(() => {
     setProducts(productsData);
@@ -24,8 +24,8 @@ const ProductContainer = ({ productsData }) => {
       <div className="w-[83%] bg-white p-4 shadow-lg rounded-lg text-black">
         <PriceFilter productsData={productsData} />
         <div className="product-container">
-          {Array.isArray(products) ? (
-            products.map((product) => (
+          {Array.isArray(productsData) ? (
+            productsData.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))
           ) : (
