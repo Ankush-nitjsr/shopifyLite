@@ -1,22 +1,35 @@
 import { useContext, useMemo } from "react";
 import { ProductContext } from "../contexts/ProductContext";
 
-export const useFilterProducts = () => {
-  const { products, filter } = useContext(ProductContext);
+export const useFilterProducts = (data) => {
+  const { categoryFilter } = useContext(ProductContext);
 
-  // Guard clause to prevent filtering when filter is not a string or products are not ready
   const newFilteredProducts = useMemo(() => {
-    console.log("Filter value:", filter);
-    console.log("Products:", products);
-    if (!filter || typeof filter !== "string") {
-      return products; // Return all products if there's no valid filter
-    }
+    if (!data.length) return []; // Prevent filtering on empty data
 
-    // Filter products based on the filter text being present in product names
-    return products.filter(
-      (product) => product?.category?.toLowerCase() === filter.toLowerCase() // Ensure safe access and case-insensitive filtering
-    );
-  }, [products, filter]); // Ensure proper dependencies
+    console.log("Products array: ", data);
 
-  return { newFilteredProducts };
+    return data.filter((product) => {
+      let matchesCategory = true;
+
+      // Check for category filter
+      if (categoryFilter) {
+        const productCategory = product?.category?.trim().toLowerCase(); // Ensure trimmed and lowercase
+        const filterCategory = categoryFilter.trim().toLowerCase();
+
+        console.log(
+          "Comparing product category: ",
+          productCategory,
+          " with ",
+          filterCategory
+        );
+
+        matchesCategory = productCategory === filterCategory;
+      }
+
+      return matchesCategory;
+    });
+  }, [data, categoryFilter]);
+
+  return Array.isArray(newFilteredProducts) ? newFilteredProducts : [];
 };
