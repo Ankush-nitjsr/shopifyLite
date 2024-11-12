@@ -9,6 +9,7 @@ import { PriceFilter } from "./PriceFilter";
 
 const ProductContainer = ({ productsData }) => {
   const { products, setProducts } = useContext(ProductContext);
+  console.log("Products @ PC: ", products);
 
   useEffect(() => {
     setProducts(productsData);
@@ -17,15 +18,19 @@ const ProductContainer = ({ productsData }) => {
   return (
     <div className="flex W-full justify-between px-7 py-4 bg-gray-200">
       {/* side filter component */}
-      <PCNavMenu products={products} />
+      <PCNavMenu />
 
       {/* Product display section */}
       <div className="w-[83%] bg-white p-4 shadow-lg rounded-lg text-black">
         <PriceFilter productsData={productsData} />
         <div className="product-container">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {Array.isArray(products) ? (
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          ) : (
+            <p>No products available</p>
+          )}
         </div>
       </div>
     </div>
