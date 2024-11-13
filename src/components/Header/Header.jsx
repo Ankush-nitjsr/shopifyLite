@@ -3,7 +3,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { ProductContext } from "../../contexts/ProductContext";
 import "./styles.css";
 import Button from "../../ui/buttons/Button";
-import { ArrowRightStartOnRectangleIcon } from "@heroicons/react/16/solid";
+import {
+  ArrowRightStartOnRectangleIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/24/outline";
 import { logout } from "../../lib/logout";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -45,16 +48,23 @@ const Header = () => {
         <NavLink to="/home" className="nav-link">
           Home Page
         </NavLink>
-        <NavLink to="/cart" className="nav-link">
-          Cart ({`${cartTotalQuantity} items`})
+        <NavLink to="/cart" className="nav-link flex gap-1 relative">
+          {/* Display cartTotalQuantity only if greater than zero */}
+          {cartTotalQuantity > 0 && (
+            <p className="cart-badge w-5 h-5 rounded-md border border-black flex justify-center items-center">
+              {cartTotalQuantity}
+            </p>
+          )}
+          <ShoppingCartIcon className="w-6 h-6" />
+          <p>Cart</p>
         </NavLink>
         {localStorage.getItem("userDetails") && (
           <Button
             onClick={handleLogout}
             variant="link"
-            className="nav-link gap-2 text-black"
+            className="nav-link gap-1 text-black"
           >
-            <ArrowRightStartOnRectangleIcon className="w-5 h-5" />
+            <ArrowRightStartOnRectangleIcon className="w-6 h-6" />
             <span>Logout</span>
           </Button>
         )}
