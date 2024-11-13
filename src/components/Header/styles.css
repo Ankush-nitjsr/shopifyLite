@@ -14,12 +14,8 @@ header.scrolled {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for a lifted effect */
 }
 
-header.scrolled .nav-link {
-  color: black; /* Change text color to black on scroll */
-}
-
-header.scrolled .nav-link.active {
-  color: #1d4ed8; /* Change active link color to yellow on scroll */
+.nav-link.active {
+  color: #1d4ed8;
 }
 
 nav {
@@ -31,6 +27,7 @@ nav {
 
 .nav-link {
   color: black;
+  font-size: medium !important;
   text-decoration: none !important;
   transition: color 0.3s; /* Smooth transition for text color */
 }
