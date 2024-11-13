@@ -36,3 +36,12 @@ nav {
   color: #1d4ed8;
   transition: all 0.3s;
 }
+
+.cart-badge {
+  position: absolute;
+  top: -0.6rem; /* Adjust this to position the badge above the icon */
+  left: 0.4rem; /* Adjust this to align the badge to the right of the icon */
+  background-color: rgb(249, 100, 100);
+  color: white;
+  font-size: 0.7rem;
+}
