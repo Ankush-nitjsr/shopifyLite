@@ -5,7 +5,7 @@ const CartPage = () => {
   return (
     <div className="">
       <Header />
-      <main className="p-6 bg-gray-200">
+      <main className="p-6 bg-gray-200 min-h-[calc(100vh-80px)]">
         <Cart />
       </main>
     </div>
