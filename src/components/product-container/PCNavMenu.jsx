@@ -19,11 +19,14 @@ export const PCNavMenu = () => {
     setCategoryFilter,
     setPriceFilter,
     setDiscountFilter,
+    setRatingFilter,
   } = useContext(ProductContext);
 
   // State to handle checked status for discount checkboxes
   const [selectedDiscounts, setSelectedDiscounts] = useState([]);
-  console.log("Selected discounts: ", selectedDiscounts);
+
+  // State to handle checked status for rating checkboxes
+  const [selectedRatings, setSelectedRatings] = useState([]);
 
   // Get filtered products
   const newFilteredProducts = useFilterProducts(data);
@@ -56,12 +59,10 @@ export const PCNavMenu = () => {
     }
   };
 
-  const handleDiscountChecked = (label, isChecked) => {
+  const handleDiscountFilter = (label, isChecked) => {
     const updatedDiscounts = isChecked
       ? [...selectedDiscounts, label]
       : selectedDiscounts.filter((discount) => discount !== label);
-
-    console.log("Selected checkbox: ", label, "Is checked:", isChecked);
 
     setSelectedDiscounts(updatedDiscounts);
 
@@ -73,6 +74,24 @@ export const PCNavMenu = () => {
       setDiscountFilter(Math.min(...selectedDiscountValues)); // Use the lowest discount value for filtering
     } else {
       setDiscountFilter(0);
+    }
+  };
+
+  const handleRatingFilter = (label, isChecked) => {
+    const updatedRatings = isChecked
+      ? [...selectedRatings, label]
+      : selectedRatings.filter((rating) => rating !== label);
+
+    setSelectedRatings(updatedRatings);
+
+    const selectedRatingValues = ratings
+      .filter((rating) => updatedRatings.includes(rating.label))
+      .map((rating) => rating.value);
+
+    if (selectedRatingValues.length > 0) {
+      setRatingFilter(Math.min(...selectedRatingValues));
+    } else {
+      setRatingFilter(0);
     }
   };
 
@@ -140,7 +159,7 @@ export const PCNavMenu = () => {
               key={discount.label}
               text={discount.label}
               onCheckedChange={(checked) =>
-                handleDiscountChecked(discount.label, checked)
+                handleDiscountFilter(discount.label, checked)
               }
             />
           ))}
@@ -156,7 +175,13 @@ export const PCNavMenu = () => {
         </div>
         <div className="space-y-3">
           {ratings.map((rating) => (
-            <CheckboxField key={rating.label} text={rating.label} />
+            <CheckboxField
+              key={rating.label}
+              text={rating.label}
+              onCheckedChange={(checked) =>
+                handleRatingFilter(rating.label, checked)
+              }
+            />
           ))}
         </div>
       </div>
