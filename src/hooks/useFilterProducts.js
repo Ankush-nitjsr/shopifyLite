@@ -20,16 +20,10 @@ export const useFilterProducts = (data) => {
       let matchesDiscount = true;
       let matchesRating = true;
 
-      // Log the product details to debug
-      console.log("Filtering product:", product);
-
       // Category filter logic
       if (categoryFilter) {
         const productCategory = product?.category?.trim().toLowerCase();
         const filterCategory = categoryFilter.trim().toLowerCase();
-        console.log(
-          `Comparing product category: ${productCategory} with ${filterCategory}`
-        );
 
         matchesCategory = productCategory === filterCategory;
       }
@@ -39,34 +33,20 @@ export const useFilterProducts = (data) => {
         priceFilter?.startPrice !== undefined &&
         priceFilter?.endPrice !== undefined
       ) {
-        console.log(
-          `Comparing price: ${product.price} with range: ${priceFilter.startPrice} - ${priceFilter.endPrice}`
-        );
         matchesPrice =
           product?.price >= priceFilter.startPrice &&
           product?.price <= priceFilter.endPrice;
       }
 
       // Discount filter logic
-      if (discountFilter !== undefined && discountFilter !== null) {
-        console.log(
-          `Comparing discount: ${product.discountPercentage} with filter: ${discountFilter}`
-        );
+      if (discountFilter !== undefined && discountFilter !== 0) {
         matchesDiscount = product?.discountPercentage >= discountFilter;
       }
 
       // Rating filter logic
-      if (ratingFilter !== undefined && ratingFilter !== null) {
-        console.log(
-          `Comparing rating: ${product.rating} with filter: ${ratingFilter}`
-        );
+      if (ratingFilter !== undefined && ratingFilter !== 0) {
         matchesRating = product?.rating >= ratingFilter;
       }
-
-      // Log the result of this product filtering
-      console.log(
-        `Product matches? Category: ${matchesCategory}, Price: ${matchesPrice}, Discount: ${matchesDiscount}, Rating: ${matchesRating}`
-      );
 
       return (
         matchesCategory && matchesPrice && matchesDiscount && matchesRating
@@ -74,7 +54,7 @@ export const useFilterProducts = (data) => {
     });
   }, [data, categoryFilter, priceFilter, discountFilter, ratingFilter]);
 
-  console.log("Filtered products:", newFilteredProducts);
+  console.log("filtered products: ", newFilteredProducts);
 
   return Array.isArray(newFilteredProducts) ? newFilteredProducts : [];
 };
