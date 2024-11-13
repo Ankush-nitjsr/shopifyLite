@@ -2,7 +2,7 @@ import { Separator } from "../../ui/separator";
 import { CheckboxField } from "../../ui/CheckboxField";
 import capitalizeFirstLetter from "../../lib/capitalizeFirstLetter";
 import Button from "../../ui/buttons/Button";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { useFilterProducts } from "../../hooks/useFilterProducts";
@@ -13,8 +13,17 @@ export const PCNavMenu = () => {
   const { data } = useGetProducts();
 
   // Use context to filter products
-  const { setProducts, categoryFilter, setCategoryFilter, setPriceFilter } =
-    useContext(ProductContext);
+  const {
+    setProducts,
+    categoryFilter,
+    setCategoryFilter,
+    setPriceFilter,
+    setDiscountFilter,
+  } = useContext(ProductContext);
+
+  // State to handle checked status for discount checkboxes
+  const [selectedDiscounts, setSelectedDiscounts] = useState([]);
+  console.log("Selected discounts: ", selectedDiscounts);
 
   // Get filtered products
   const newFilteredProducts = useFilterProducts(data);
@@ -44,6 +53,26 @@ export const PCNavMenu = () => {
       });
     } else {
       setPriceFilter({});
+    }
+  };
+
+  const handleDiscountChecked = (label, isChecked) => {
+    const updatedDiscounts = isChecked
+      ? [...selectedDiscounts, label]
+      : selectedDiscounts.filter((discount) => discount !== label);
+
+    console.log("Selected checkbox: ", label, "Is checked:", isChecked);
+
+    setSelectedDiscounts(updatedDiscounts);
+
+    const selectedDiscountValues = discounts
+      .filter((discount) => updatedDiscounts.includes(discount.label))
+      .map((discount) => discount.value);
+
+    if (selectedDiscountValues.length > 0) {
+      setDiscountFilter(Math.min(...selectedDiscountValues)); // Use the lowest discount value for filtering
+    } else {
+      setDiscountFilter(0);
     }
   };
 
@@ -107,7 +136,13 @@ export const PCNavMenu = () => {
         </div>
         <div className="space-y-3">
           {discounts.map((discount) => (
-            <CheckboxField key={discount.label} text={discount.label} />
+            <CheckboxField
+              key={discount.label}
+              text={discount.label}
+              onCheckedChange={(checked) =>
+                handleDiscountChecked(discount.label, checked)
+              }
+            />
           ))}
         </div>
       </div>
