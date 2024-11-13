@@ -7,8 +7,8 @@ export function ProductProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState("");
   const [priceFilter, setPriceFilter] = useState({});
-  const [discountFilter, setDiscountFilter] = useState("");
-  const [ratingFilter, setRatingFilter] = useState("");
+  const [discountFilter, setDiscountFilter] = useState(0);
+  const [ratingFilter, setRatingFilter] = useState(0);
   const [myCartData, setMyCartData] = useState(
     () => JSON.parse(localStorage.getItem("myCartData")) || []
   );
