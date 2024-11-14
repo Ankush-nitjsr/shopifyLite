@@ -1,8 +1,6 @@
 import { userPropTypes } from "../../lib/userPropTypes";
 
 export const UserModal = ({ user }) => {
-  console.log("user phone: ", user.phone);
-
   return (
     <div className="flex items-center bg-white p-4 shadow-lg rounded-lg space-x-4">
       <div className="user-avatar">
