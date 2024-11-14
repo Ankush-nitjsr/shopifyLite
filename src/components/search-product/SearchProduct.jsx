@@ -46,7 +46,7 @@ export const SearchProduct = ({
       <Button
         variant="outline"
         type="submit"
-        className="rounded-full bg-[#ffa500]"
+        className="p-2.5 rounded-full bg-[#ffa500] hover:bg-[#f4b84a]"
       >
         <SearchIcon className="w-5 h-5 text-white" />
       </Button>
