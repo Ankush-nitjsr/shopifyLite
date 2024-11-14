@@ -8,12 +8,6 @@ export const useFilterProducts = (data) => {
   const newFilteredProducts = useMemo(() => {
     if (!data.length) return []; // Prevent filtering on empty data
 
-    console.log("Products array: ", data);
-    console.log("Category Filter:", categoryFilter);
-    console.log("Price Filter:", priceFilter);
-    console.log("Discount Filter:", discountFilter);
-    console.log("Rating Filter:", ratingFilter);
-
     return data.filter((product) => {
       let matchesCategory = true;
       let matchesPrice = true;
@@ -53,8 +47,6 @@ export const useFilterProducts = (data) => {
       );
     });
   }, [data, categoryFilter, priceFilter, discountFilter, ratingFilter]);
-
-  console.log("filtered products: ", newFilteredProducts);
 
   return Array.isArray(newFilteredProducts) ? newFilteredProducts : [];
 };
