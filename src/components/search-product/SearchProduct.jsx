@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import Button from "../../ui/buttons/Button";
+import { SearchIcon } from "lucide-react";
 
 export const SearchProduct = ({
   allProducts,
@@ -32,7 +33,7 @@ export const SearchProduct = ({
 
   return (
     <form
-      className="w-[60%] m-auto flex items-center justify-center space-x-4 p-3 bg-white shadow-md rounded-md"
+      className="w-[60%] m-auto flex items-center justify-evenly p-1 bg-gray-200 border border-gray-300 rounded-3xl focus:border-[#ffa500] hover:border-[#ffa500]"
       onSubmit={handleSearch}
     >
       <input
@@ -40,10 +41,14 @@ export const SearchProduct = ({
         placeholder="Search product by name"
         value={searchName}
         onChange={(e) => setSearchName(e.target.value)}
-        className="flex-grow p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+        className="flex-grow p-2 focus:outline-none transition bg-gray-200 h-6 m-2"
       />
-      <Button variant="outline" type="submit" className="flex-shrink-0">
-        Search
+      <Button
+        variant="outline"
+        type="submit"
+        className="rounded-full bg-[#ffa500]"
+      >
+        <SearchIcon className="w-5 h-5 text-white" />
       </Button>
     </form>
   );
