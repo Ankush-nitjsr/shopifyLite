@@ -16,7 +16,7 @@ const ProductContainer = ({ productsData }) => {
   }, [productsData, setProducts]);
 
   return (
-    <div className="flex W-full justify-between px-7 py-4 bg-gray-200">
+    <div className="flex W-full justify-between px-7 bg-gray-200">
       {/* side filter component */}
       <PCNavMenu />
 
