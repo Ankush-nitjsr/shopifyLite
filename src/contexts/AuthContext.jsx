@@ -11,6 +11,8 @@ export function AuthProvider({ children }) {
     () => JSON.parse(localStorage.getItem("userSession")) || {}
   );
 
+  const [user, setUser] = useState({});
+
   useEffect(() => {
     if (isAuthenticated) {
       localStorage.setItem("token", isAuthenticated);
@@ -27,8 +29,10 @@ export function AuthProvider({ children }) {
       setIsAuthenticated,
       userSession,
       setUserSession,
+      user,
+      setUser,
     }),
-    [isAuthenticated, userSession]
+    [isAuthenticated, userSession, user]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
