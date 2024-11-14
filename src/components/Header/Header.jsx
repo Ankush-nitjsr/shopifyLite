@@ -13,12 +13,16 @@ import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { SearchProduct } from "../search-product/SearchProduct";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import PropTypes from "prop-types";
+import { useGetUser } from "../../hooks/useGetUser";
 
 const Header = ({ setSearchFlag, setSearchedProducts }) => {
   const { data } = useGetProducts();
   const { cartTotalQuantity } = useContext(ProductContext);
   const [isScrolling, setIsScrolling] = useState(false);
-  const { setIsAuthenticated } = useContext(AuthContext);
+  const { userSession, setIsAuthenticated, setUser } = useContext(AuthContext);
+
+  // Fetch user data after login based on userId
+  const { userData } = useGetUser(userSession.id);
 
   const navigate = useNavigate();
 
@@ -27,6 +31,13 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
     setIsAuthenticated(""); // Clear authentication
     navigate("/"); // navigate to login page
   };
+
+  useEffect(() => {
+    if (userData) {
+      // Once userData is fetched, set it in the AuthContext
+      setUser(userData);
+    }
+  }, [userData, setUser]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,8 +71,21 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
           setSearchedProducts={setSearchedProducts}
         />
         <NavLink to="/profile" className="nav-link whitespace-nowrap">
-          Profile Details
+          <div className="flex flex-col">
+            {localStorage.getItem("userSession") && userSession.firstName ? (
+              <>
+                <span className="text-2xs">{`Hello, ${userSession.firstName}`}</span>
+                <span className="text-sm font-medium">Account & Lists</span>
+              </>
+            ) : (
+              <>
+                <span className="text-2xs">Hello, log in</span>
+                <span className="text-sm font-medium">Account & Lists</span>
+              </>
+            )}
+          </div>
         </NavLink>
+
         <NavLink to="/cart" className="nav-link flex gap-1 relative">
           {/* Display cartTotalQuantity only if greater than zero */}
           {cartTotalQuantity > 0 && (
