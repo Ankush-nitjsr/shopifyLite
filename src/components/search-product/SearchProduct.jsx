@@ -58,9 +58,9 @@ export const SearchProduct = ({
 SearchProduct.propTypes = {
   allProducts: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
+      title: PropTypes.string,
     })
-  ).isRequired,
-  setSearchFlag: PropTypes.func.isRequired,
-  setSearchedProducts: PropTypes.func.isRequired,
+  ),
+  setSearchFlag: PropTypes.func,
+  setSearchedProducts: PropTypes.func,
 };
