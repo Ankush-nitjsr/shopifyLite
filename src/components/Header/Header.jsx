@@ -12,7 +12,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { SearchProduct } from "../search-product/SearchProduct";
 import { useGetProducts } from "../../hooks/useGetProducts";
-import { productPropTypes } from "../../lib/productPropTypes";
 import PropTypes from "prop-types";
 
 const Header = ({ setSearchFlag, setSearchedProducts }) => {
@@ -89,8 +88,8 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
 };
 
 Header.propTypes = {
-  setSearchFlag: PropTypes.bool,
-  setSearchedProducts: Array.of(productPropTypes),
+  setSearchFlag: PropTypes.func,
+  setSearchedProducts: PropTypes.func,
 };
 
 export default Header;
