@@ -10,7 +10,12 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      username: "emilys",
+      password: "emilyspass",
+    },
+  });
 
   const { setIsAuthenticated, setUserDetails } = useContext(AuthContext);
   const navigate = useNavigate();
