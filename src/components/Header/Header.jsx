@@ -48,7 +48,7 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
   return (
     <header className={isScrolling ? "scrolled" : ""}>
       <nav>
-        <NavLink className="flex items-center">
+        <NavLink to="/home" className="flex items-center">
           <ShoppingBagIcon className="w-10 h-10 text-[#ffa500]" />
           <p className="font-medium text-xl pt-1">
             <span className="text-4xl text-[#ffa500]">S</span>
@@ -62,9 +62,6 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
         />
         <NavLink to="/profile" className="nav-link whitespace-nowrap">
           Profile Details
-        </NavLink>
-        <NavLink to="/home" className="nav-link whitespace-nowrap">
-          Home Page
         </NavLink>
         <NavLink to="/cart" className="nav-link flex gap-1 relative">
           {/* Display cartTotalQuantity only if greater than zero */}
