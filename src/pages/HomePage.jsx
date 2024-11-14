@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import ProductContainer from "../components/product-container/ProductContainer";
 import Header from "../components/Header/Header";
-import { SearchProduct } from "../components/search-product/SearchProduct";
 import { ProductContext } from "../contexts/ProductContext";
 import { useGetProducts } from "../hooks/useGetProducts";
 
@@ -22,7 +21,10 @@ const HomePage = () => {
 
   return (
     <>
-      <Header />
+      <Header
+        setSearchFlag={setSearchFlag}
+        setSearchedProducts={setSearchedProducts}
+      />
       {loading ? (
         <div
           style={{
@@ -36,11 +38,6 @@ const HomePage = () => {
         </div>
       ) : (
         <div className="w-full bg-gray-200 px-2 py-4 min-h-screen">
-          <SearchProduct
-            allProducts={data}
-            setSearchFlag={setSearchFlag}
-            setSearchedProducts={setSearchedProducts}
-          />
           {(!searchFlag
             ? products.length > 0
               ? products
