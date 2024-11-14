@@ -7,28 +7,28 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(() =>
     localStorage.getItem("token")
   );
-  const [userDetails, setUserDetails] = useState(
-    () => JSON.parse(localStorage.getItem("userDetails")) || {}
+  const [userSession, setUserSession] = useState(
+    () => JSON.parse(localStorage.getItem("userSession")) || {}
   );
 
   useEffect(() => {
     if (isAuthenticated) {
       localStorage.setItem("token", isAuthenticated);
-      localStorage.setItem("userDetails", JSON.stringify(userDetails));
+      localStorage.setItem("userSession", JSON.stringify(userSession));
     } else {
       localStorage.removeItem("token");
-      localStorage.removeItem("userDetails");
+      localStorage.removeItem("userSession");
     }
-  }, [isAuthenticated, userDetails]);
+  }, [isAuthenticated, userSession]);
 
   const value = useMemo(
     () => ({
       isAuthenticated,
       setIsAuthenticated,
-      userDetails,
-      setUserDetails,
+      userSession,
+      setUserSession,
     }),
-    [isAuthenticated, userDetails]
+    [isAuthenticated, userSession]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

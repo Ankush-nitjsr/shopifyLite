@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
  */
 const logout = () => {
   // delete user from local storage
-  localStorage.removeItem("userDetails");
+  localStorage.removeItem("userSession");
   // delete cart
   localStorage.removeItem("myCartData");
   // delete token saved in local storage

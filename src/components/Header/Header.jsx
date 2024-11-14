@@ -72,7 +72,7 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
           <ShoppingCartIcon className="w-6 h-6" />
           <p>Cart</p>
         </NavLink>
-        {localStorage.getItem("userDetails") && (
+        {localStorage.getItem("userSession") && (
           <Button
             onClick={handleLogout}
             variant="link"
