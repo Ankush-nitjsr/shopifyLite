@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import ProductContainer from "../components/product-container/ProductContainer";
+import ProductsContainer from "../components/products-container/ProductsContainer";
 import Header from "../components/Header/Header";
 import { ProductContext } from "../contexts/ProductContext";
 import { useGetProducts } from "../hooks/useGetProducts";
@@ -44,7 +44,7 @@ const HomePage = () => {
               : data
             : searchedProducts
           ).length > 0 ? (
-            <ProductContainer
+            <ProductsContainer
               productsData={!searchFlag ? products : searchedProducts}
             />
           ) : (
