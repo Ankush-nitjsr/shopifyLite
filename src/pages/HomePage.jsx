@@ -16,9 +16,6 @@ const HomePage = () => {
     }
   }, [data, setProducts]);
 
-  console.log("data @ HomePage:", data);
-  console.log("products @ HomePage:", products);
-
   return (
     <>
       <Header
