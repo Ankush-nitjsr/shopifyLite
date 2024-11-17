@@ -36,8 +36,8 @@ const Cart = () => {
     <div className="w-full flex justify-center gap-6">
       <div className="cart-items w-[60%] bg-white shadow-lg rounded-lg p-2">
         {myCartData.length ? (
-          myCartData.map((product, i) => (
-            <div key={i}>
+          myCartData.map((product) => (
+            <div key={product}>
               <CartItem product={product} />
               <Separator className="bg-gray-200" />
             </div>
