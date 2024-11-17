@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { productPropTypes } from "../../lib/productPropTypes";
 import { useContext, useState } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
+import Button from "../../ui/buttons/Button";
 
 export const PriceFilter = ({ productsData }) => {
   const { products, setProducts, setFilter } = useContext(ProductContext);
@@ -31,10 +32,11 @@ export const PriceFilter = ({ productsData }) => {
   };
 
   return (
-    <div className="filter-section">
+    <div className="filter-section m-1 p-1">
       <div>
-        <label>Min Price:</label>
+        <label htmlFor="min-price">Min Price:</label>
         <input
+          id="min-price"
           type="text"
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
@@ -42,8 +44,9 @@ export const PriceFilter = ({ productsData }) => {
         />
       </div>
       <div>
-        <label>Max Price:</label>
+        <label htmlFor="max-price">Max Price:</label>
         <input
+          id="max-price"
           type="text"
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
@@ -51,10 +54,22 @@ export const PriceFilter = ({ productsData }) => {
         />
       </div>
       <div>
-        <button onClick={applyFilter}>Apply Filter</button>
+        <Button
+          variant="outline"
+          onClick={applyFilter}
+          className="hover:bg-[#ffa500]"
+        >
+          Apply Filter
+        </Button>
       </div>
       <div>
-        <button onClick={clearFilter}>Clear Filter</button>
+        <Button
+          variant="outline"
+          onClick={clearFilter}
+          className="hover:bg-[#ffa500]"
+        >
+          Clear Filter
+        </Button>
       </div>
     </div>
   );
