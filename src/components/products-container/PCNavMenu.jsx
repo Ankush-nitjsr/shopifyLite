@@ -102,7 +102,7 @@ export const PCNavMenu = () => {
 
       {/* Category Filter */}
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-4">
           <span className="text-lg font-medium">Category</span>
         </div>
         <ul className="space-y-2">
@@ -129,16 +129,17 @@ export const PCNavMenu = () => {
 
       {/* Price Filter */}
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-4">
           <span className="text-lg font-medium">Price</span>
         </div>
-        <div className="space-y-2 flex flex-col items-start">
+        <div className="space-y-2 flex flex-col items-start px-2">
           {priceRanges.map((range) => (
             <Button
               key={range.label}
               onClick={() => handlePriceClick(range.label)}
               variant="link"
               size="lg"
+              className="text-black text-base"
             >
               {range.label}
             </Button>
@@ -150,7 +151,7 @@ export const PCNavMenu = () => {
 
       {/* Discount Filter */}
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-4">
           <span className="text-lg font-medium">Discount</span>
         </div>
         <div className="space-y-3">
@@ -170,7 +171,7 @@ export const PCNavMenu = () => {
 
       {/* Product Rating Filter */}
       <div className="mb-6">
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-4">
           <span className="text-lg font-medium">Product Rating</span>
         </div>
         <div className="space-y-3">
