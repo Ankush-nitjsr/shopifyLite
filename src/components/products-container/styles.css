@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 4rem;
   margin-top: 0.5rem;
 }
 
@@ -16,23 +16,17 @@
 .filter-section input {
   background-color: #f9fafb;
   color: black;
-  border: 1px solid var(--purple-grey);
+  border: 1px solid rgb(233, 233, 233);
   border-radius: 0.5rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   margin: 0.5rem;
-  width: 8.2rem;
+  width: 8.5rem;
 }
 
-.filter-section button {
-  color: rgb(50, 50, 50);
-  background-color: #f9fafb;
-  border: 1px solid var(--purple-grey);
-  border-radius: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  transition: all 0.2s;
+.filter-section input:hover {
+  border: 1px solid #ffa500;
 }
 
-.filter-section button:hover {
-  background-color: var(--white);
-  color: var(--theme);
+.filter-section input:focus {
+  border: 1px solid #ffa500;
 }
