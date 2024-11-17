@@ -5,9 +5,9 @@ export const PDeliveryAndAvailability = ({
   availabilityStatus,
 }) => {
   return (
-    <div className="delivery-info">
+    <div className="delivery-info space-y-2">
       <div className="flex space-x-1">
-        <p>Free delivery :</p>
+        <p>Free delivery:</p>
         <p className="font-bold">{shippingInformation}</p>
       </div>
       <div>
