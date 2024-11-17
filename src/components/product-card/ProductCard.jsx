@@ -1,13 +1,10 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
-import { ProductContext } from "../../contexts/ProductContext";
-import { toast } from "react-toastify";
 import { productPropTypes } from "../../lib/productPropTypes";
+import { PCPrice } from "./PCPrice";
+import { StarRating } from "../product-page/StarRating";
 
 const ProductCard = ({ product }) => {
-  const { myCartData, setMyCartData } = useContext(ProductContext);
-
   // Hook for navigation
   const navigate = useNavigate();
 
@@ -16,66 +13,37 @@ const ProductCard = ({ product }) => {
     navigate(`/product/${product.id}`);
   };
 
-  // Update cart
-  const handleUpdateCart = (newCartData) => {
-    setMyCartData(newCartData);
-    localStorage.setItem("myCartData", JSON.stringify(newCartData));
-    toast.success("Item added to cart");
-  };
-
-  // Add product to cart
-  const handleAddToCart = (id) => {
-    if (id === product.id) {
-      const productToAdd = { ...product, quantity: 1 };
-      handleUpdateCart([...myCartData, productToAdd]);
-    }
-  };
-
   return (
-    <div className="product">
-      <button
-        className="product-img"
-        onClick={handleNavigateToProduct}
-        style={{
-          padding: 0,
-          background: "#f3f4f6",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        <img src={product.images[0]} alt={product.title} />
-      </button>
-      <div className="details-info space-y-2 p-2">
-        <button
-          className="product-title"
-          onClick={handleNavigateToProduct}
-          style={{ background: "none", border: "none", cursor: "pointer" }}
-        >
-          {product.title}
+    <div className="flex flex-col p-1 w-72">
+      <div className="product-card">
+        <button className="product-img" onClick={handleNavigateToProduct}>
+          <img src={product.images[0]} alt={product.title} />
         </button>
-        <div className="product-brand font-bold">{product.brand}</div>
-        <div className="details-action">
-          <div className="flex justify-between">
+        <div className="details-info space-y-2 p-2 flex flex-col justify-center">
+          <div className="product-brand font-bold flex justify-center">
+            <span>{product.brand}</span>
+          </div>
+          <button
+            className="product-title text-black"
+            onClick={handleNavigateToProduct}
+          >
+            {product.title}
+          </button>
+          <div className="m-auto">
+            <StarRating rating={product.rating} />
+          </div>
+          <div className="product-details flex flex-col justify-center items-center">
+            <PCPrice
+              price={product.price}
+              discountPercentage={product.discountPercentage}
+            />
             <div>
-              <div className="text-xl text-[var(--theme)]">
-                Price: ${product.price}
-              </div>
-              <div>
-                Status:{" "}
-                {product.stock > 0 ? (
-                  <span className="text-green-700">In Stock</span>
-                ) : (
-                  <span className="text-orange-500">Unavailable</span>
-                )}
-              </div>
-            </div>
-            <div>
-              <button
-                className="addToCart-btn"
-                onClick={() => handleAddToCart(product.id)}
-              >
-                Add to Cart
-              </button>
+              Status:{" "}
+              {product.stock > 0 ? (
+                <span className="text-green-700">In Stock</span>
+              ) : (
+                <span className="text-orange-500">Unavailable</span>
+              )}
             </div>
           </div>
         </div>
