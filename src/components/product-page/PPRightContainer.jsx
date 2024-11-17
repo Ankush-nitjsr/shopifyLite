@@ -27,15 +27,8 @@ export const PPRightContainer = ({ data }) => {
   // Add product to cart
   const handleAddToCart = (id) => {
     if (id === data.id) {
-      const productToBeAddedToCart = {
-        productId: id,
-        productPicture: data.images[0],
-        productName: data.title,
-        productPrice: data.price,
-        productQuantity: 1,
-        productAmount: data.price,
-      };
-      handleUpdateCart([...myCartData, productToBeAddedToCart]);
+      const productToAdd = { ...data, quantity: 1 };
+      handleUpdateCart([...myCartData, productToAdd]);
     }
   };
 
