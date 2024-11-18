@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const NavMenuSection = ({
   section,
+  visibleAccountSection,
   setVisibleAccountSection,
   setIsAuthenticated,
 }) => {
@@ -41,11 +42,13 @@ export const NavMenuSection = ({
             <Link
               key={subSection}
               onClick={() => setVisibleAccountSection(subSection)}
-              className="block p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+              className={`block p-2 rounded-lg transition-colors duration-200  hover:bg-gray-100 hover:text-[#ffa500] ${
+                visibleAccountSection === subSection
+                  ? "border border-[#ffa500] bg-gray-50 text-[#ffa500]"
+                  : "text-gray-600"
+              }`}
             >
-              <div className="text-gray-600 hover:text-blue-500">
-                {subSection}
-              </div>
+              {subSection}
             </Link>
           ))}
         </div>
@@ -63,6 +66,7 @@ NavMenuSection.propTypes = {
     actionFunction: PropTypes.func,
     subSections: PropTypes.arrayOf(PropTypes.string), // Array of strings for subsections
   }).isRequired,
+  visibleAccountSection: PropTypes.string, // String for the currently visible section
   setVisibleAccountSection: PropTypes.func, // Function to handle section change
   setIsAuthenticated: PropTypes.func.isRequired, // Add setIsAuthenticated as required prop
 };
