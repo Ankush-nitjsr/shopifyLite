@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userPropTypes } from "../../lib/userPropTypes";
 import Button from "../../ui/buttons/Button";
 
 export const PersonalInformation = ({ user }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(user);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    gender: "",
+    email: "",
+    phone: "",
+  });
 
   // Toggle editing mode
   const handleEditClick = () => {
@@ -17,18 +23,23 @@ export const PersonalInformation = ({ user }) => {
 
   // Handle save click
   const handleSaveClick = () => {
-    // Save the new data (you might want to send this data to the server or state management here)
     setIsEditing(false);
   };
 
   // Handle input change
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [id]: value,
-    });
+    }));
   };
+
+  useEffect(() => {
+    if (user) {
+      setFormData(user);
+    }
+  }, [user]);
 
   return (
     <div className="bg-white space-y-8">
@@ -64,10 +75,10 @@ export const PersonalInformation = ({ user }) => {
               </label>
               <input
                 id="firstname"
-                value={formData.firstName}
+                value={formData?.firstName || ""}
+                onChange={handleInputChange}
                 type="text"
                 className="mt-1 p-2 bg-gray-200 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                onChange={handleInputChange}
                 disabled={!isEditing}
               />
             </div>
@@ -77,10 +88,10 @@ export const PersonalInformation = ({ user }) => {
               </label>
               <input
                 id="lastname"
-                value={formData.lastName}
+                value={formData?.lastName || ""}
+                onChange={handleInputChange}
                 type="text"
                 className="mt-1 p-2 bg-gray-200 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                onChange={handleInputChange}
                 disabled={!isEditing}
               />
             </div>
@@ -96,15 +107,17 @@ export const PersonalInformation = ({ user }) => {
                 <input
                   id="male"
                   type="radio"
-                  className="mr-2"
-                  checked={formData.gender === "male"}
+                  checked={formData?.gender === "male"}
                   onChange={() => setFormData({ ...formData, gender: "male" })}
+                  className="mr-2"
                   disabled={!isEditing}
                 />
                 <label
                   htmlFor="male"
                   className={`flex items-center ${
-                    formData.gender === "male" ? "font-semibold" : "font-normal"
+                    formData?.gender === "male"
+                      ? "font-semibold"
+                      : "font-normal"
                   }`}
                 >
                   Male
@@ -115,17 +128,17 @@ export const PersonalInformation = ({ user }) => {
                 <input
                   id="female"
                   type="radio"
-                  className="mr-2"
-                  checked={formData.gender === "female"}
+                  checked={formData?.gender === "female"}
                   onChange={() =>
                     setFormData({ ...formData, gender: "female" })
                   }
+                  className="mr-2"
                   disabled={!isEditing}
                 />
                 <label
                   htmlFor="female"
                   className={`flex items-center ${
-                    formData.gender === "female"
+                    formData?.gender === "female"
                       ? "font-semibold"
                       : "font-normal"
                   }`}
@@ -163,11 +176,11 @@ export const PersonalInformation = ({ user }) => {
           </div>
           <div className="flex justify-start space-x-4">
             <input
-              value={formData.email}
+              id="email"
+              value={formData?.email || ""}
+              onChange={handleInputChange}
               type="text"
               className="w-[40%] mt-1 p-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onChange={handleInputChange}
-              id="email"
               disabled={!isEditing}
             />
             <div className="flex items-end">
@@ -202,11 +215,11 @@ export const PersonalInformation = ({ user }) => {
           </div>
           <div className="flex justify-start space-x-4">
             <input
-              value={formData.phone}
+              id="phone"
+              value={formData?.phone || ""}
+              onChange={handleInputChange}
               type="text"
               className="w-[40%] mt-1 p-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onChange={handleInputChange}
-              id="phone"
               disabled={!isEditing}
             />
             <div className="flex items-end">
