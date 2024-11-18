@@ -1,54 +1,14 @@
-import {
-  BriefcaseIcon,
-  CreditCardIcon,
-  PowerIcon,
-  TruckIcon,
-  UserIcon,
-} from "@heroicons/react/24/solid";
 import PropTypes from "prop-types";
 import { NavMenuSection } from "./NavMenuSection";
 import { Separator } from "../../ui/separator";
-import { logout } from "../../lib/logout";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { constants } from "./constants";
 
-const constants = [
-  {
-    icon: TruckIcon,
-    sectionTitle: "my orders",
-    path: "",
-    actionFunction: () => console.log("My Orders Clicked"), // Example action
-  },
-  {
-    icon: UserIcon,
-    sectionTitle: "account settings",
-    path: "",
-    actionFunction: () => console.log("Account Settings Clicked"), // Example action
-    subSections: ["Personal Information", "Manage Addresses"],
-  },
-  {
-    icon: CreditCardIcon,
-    sectionTitle: "payments",
-    path: "",
-    actionFunction: () => console.log("Payments Clicked"), // Example action
-    subSections: ["Saved UPI", "Saved Cards"],
-  },
-  {
-    icon: BriefcaseIcon,
-    sectionTitle: "my stuff",
-    path: "",
-    actionFunction: () => console.log("My Stuff Clicked"), // Example action
-    subSections: ["My Wishlist", "My Reviews & Ratings"],
-  },
-  {
-    icon: PowerIcon,
-    sectionTitle: "logout",
-    path: "/",
-    actionFunction: logout,
-  },
-];
-
-export const AccountNavMenu = ({ setVisibleAccountSection }) => {
+export const AccountNavMenu = ({
+  visibleAccountSection,
+  setVisibleAccountSection,
+}) => {
   const { setIsAuthenticated } = useContext(AuthContext);
 
   return (
@@ -57,6 +17,7 @@ export const AccountNavMenu = ({ setVisibleAccountSection }) => {
         <div key={`${section.sectionTitle}-container`}>
           <NavMenuSection
             section={section}
+            visibleAccountSection={visibleAccountSection}
             setVisibleAccountSection={setVisibleAccountSection}
             setIsAuthenticated={setIsAuthenticated}
           />
@@ -68,5 +29,6 @@ export const AccountNavMenu = ({ setVisibleAccountSection }) => {
 };
 
 AccountNavMenu.propTypes = {
+  visibleAccountSection: PropTypes.string,
   setVisibleAccountSection: PropTypes.func.isRequired,
 };
