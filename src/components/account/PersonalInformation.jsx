@@ -44,7 +44,7 @@ export const PersonalInformation = ({ user }) => {
   return (
     <div className="bg-white space-y-8">
       {/* Header with Edit button */}
-      <form action="">
+      <form action="" className="space-y-4">
         <div className="flex items-center space-x-8">
           <h2 className="text-2xl font-bold text-gray-800">
             Personal Information
