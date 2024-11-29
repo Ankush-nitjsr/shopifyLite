@@ -1,0 +1,16 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(63, 63, 63);
+  align-items: end;
+  padding: 1rem 11.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+}
+
+header.scrolled {
+  background-color: rgba(255, 255, 255, 0.9); /* Background when scrolling */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for a lifted effect */
+}
