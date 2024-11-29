@@ -29,7 +29,7 @@ export const CartItemList = () => {
   }, [setMyCartData, setCartTotalQuantity]);
 
   return (
-    <div className="cart-items bg-white rounded-lg p-2">
+    <div className="cart-items min-w-[60%] bg-white rounded-lg p-2">
       {myCartData.length ? (
         myCartData.map((product) => (
           <div key={`${product.sku}-${product.id}`}>
