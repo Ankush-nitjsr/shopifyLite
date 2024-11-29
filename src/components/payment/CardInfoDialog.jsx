@@ -67,7 +67,7 @@ export function CardInfoDialog() {
               />
             </div>
           </div>
-          <Separator orientation="verticle" />
+          <Separator orientation="vertical" />
           <div className="flex flex-col space-y-2 w-[40%]">
             <DialogDescription>
               Please ensure that you enable your card for online payments from
