@@ -46,32 +46,32 @@ export const EMI = ({ isSelected, onSelect }) => {
         <label htmlFor="card" className="flex space-x-2">
           <img
             className="w-12 h-12"
-            src="src/assets/visa.png"
+            src="/assets/visa.png"
             alt="visa card image"
           />
           <img
             className="w-12 h-12"
-            src="src/assets/master-card.png"
+            src="/assets/master-card.png"
             alt="master-card image"
           />
           <img
             className="w-12 h-12"
-            src="src/assets/american-express.png"
+            src="/assets/american-express.png"
             alt="american-express card image"
           />
           <img
             className="w-12 h-12"
-            src="src/assets/paypal.png"
+            src="/assets/paypal.png"
             alt="paypal card image"
           />
           <img
             className="w-12 h-12"
-            src="src/assets/maestro.png"
+            src="/assets/maestro.png"
             alt="maestro card image"
           />
           <img
             className="w-12 h-12"
-            src="src/assets/rupay.png"
+            src="/assets/rupay.png"
             alt="rupay card image"
           />
         </label>
