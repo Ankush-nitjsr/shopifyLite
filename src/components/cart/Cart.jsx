@@ -1,4 +1,3 @@
-import "./styles.css";
 import { CartSubTotal } from "./cart-item/CartSubTotal";
 import { CartItemList } from "./CartItemList";
 
