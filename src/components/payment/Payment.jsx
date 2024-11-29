@@ -13,7 +13,7 @@ export const Payment = () => {
   };
 
   return (
-    <div className="space-y-4 p-1">
+    <div className="space-y-4 p-1 w-full">
       {/* Component title */}
       <h1 className="text-xl font-semibold text-gray-800">
         Select a payment method
