@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/select";
+import { CardImages } from "./CardImages";
 
 export const EMI = ({ isSelected, onSelect }) => {
   const [selectedValue, setSelectedValue] = useState("");
@@ -43,38 +44,7 @@ export const EMI = ({ isSelected, onSelect }) => {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <label htmlFor="card" className="flex space-x-2">
-          <img
-            className="w-12 h-12"
-            src="/assets/visa.png"
-            alt="visa card image"
-          />
-          <img
-            className="w-12 h-12"
-            src="/assets/master-card.png"
-            alt="master-card image"
-          />
-          <img
-            className="w-12 h-12"
-            src="/assets/american-express.png"
-            alt="american-express card image"
-          />
-          <img
-            className="w-12 h-12"
-            src="/assets/paypal.png"
-            alt="paypal card image"
-          />
-          <img
-            className="w-12 h-12"
-            src="/assets/maestro.png"
-            alt="maestro card image"
-          />
-          <img
-            className="w-12 h-12"
-            src="/assets/rupay.png"
-            alt="rupay card image"
-          />
-        </label>
+        <CardImages forId="emi" />
       </div>
     </div>
   );
