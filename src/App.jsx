@@ -7,6 +7,7 @@ import AccountPage from "./pages/AccountPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ProductPage } from "./components/product-page/ProductPage";
+import { Checkout } from "./components/checkout/Checkout";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/profile" element={<AccountPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Route>
         </Routes>
       </Router>
