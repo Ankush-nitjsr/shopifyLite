@@ -32,6 +32,11 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
     navigate("/"); // navigate to login page
   };
 
+  // reload the current webpage
+  const resetToDefault = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     if (userData) {
       // Once userData is fetched, set it in the AuthContext
@@ -58,7 +63,11 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
   return (
     <header className={isScrolling ? "scrolled" : ""}>
       <nav>
-        <NavLink to="/home" className="flex items-center">
+        <NavLink
+          to="/home"
+          onClick={resetToDefault}
+          className="flex items-center"
+        >
           <ShoppingBagIcon className="w-10 h-10 text-[#ffa500]" />
           <p className="font-medium text-xl pt-1">
             <span className="text-4xl text-[#ffa500]">S</span>
