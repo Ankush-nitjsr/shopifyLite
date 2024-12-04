@@ -43,7 +43,11 @@ export const Checkout = () => {
 
   return (
     <div className="checkout flex flex-col">
-      <header className={isScrolling ? "scrolled" : ""}>
+      <header
+        className={`${
+          isScrolling ? "scrolled" : ""
+        } checkout-header space-x-40`}
+      >
         <NavLink to="/home" className="flex items-center">
           <ShoppingBagIcon className="w-10 h-10 text-[#ffa500]" />
           <p className="font-medium text-xl pt-1">
