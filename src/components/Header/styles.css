@@ -1,3 +1,4 @@
+/* Default Styles */
 header {
   display: flex;
   justify-content: center;
@@ -6,42 +7,62 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header.scrolled {
-  background-color: rgba(255, 255, 255, 0.9); /* Background when scrolling */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for a lifted effect */
-}
-
-.nav-link.active {
-  color: #ffa500;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav {
   display: flex;
   gap: 1.5rem;
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
 
 .nav-link {
   color: black;
-  font-size: medium !important;
+  font-size: medium;
   text-decoration: none !important;
-  transition: color 0.3s; /* Smooth transition for text color */
+  transition: color 0.3s;
 }
 
 .nav-link:hover {
   color: #ffa500;
-  transition: all 0.3s;
+}
+
+.search-bar {
+  flex-grow: 1;
+  margin: 0 1rem;
 }
 
 .cart-badge {
   position: absolute;
-  top: -0.6rem; /* Adjust this to position the badge above the icon */
-  left: 0.4rem; /* Adjust this to align the badge to the right of the icon */
+  top: -0.6rem;
+  left: 0.4rem;
   background-color: rgb(249, 100, 100);
   color: white;
   font-size: 0.7rem;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+  }
+
+  .nav-link,
+  .cart-badge,
+  .search-bar input,
+  header p {
+    font-size: 0.75rem; /* Further reduce font size */
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 1rem;
+    order: 2;
+  }
 }
