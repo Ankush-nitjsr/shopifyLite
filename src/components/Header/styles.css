@@ -2,8 +2,8 @@
 header {
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 1rem 2.5rem;
+  align-items: end;
+  padding: 1rem 8.5rem;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -49,6 +49,9 @@ nav {
 }
 
 @media (max-width: 768px) {
+  header {
+    padding: 1rem 2.5rem;
+  }
   nav {
     flex-wrap: wrap;
   }
