@@ -1,9 +1,9 @@
 header {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   color: rgb(63, 63, 63);
   align-items: end;
-  padding: 1rem 11.5rem;
+  padding: 1rem 2.5rem;
   position: sticky;
   top: 0;
   z-index: 1000;
