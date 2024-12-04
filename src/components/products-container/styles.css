@@ -30,3 +30,22 @@
 .filter-section input:focus {
   border: 1px solid #ffa500;
 }
+
+@media (max-width: 768px) {
+  .filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .filter-section input {
+    background-color: #f9fafb;
+    color: black;
+    border: 1px solid rgb(233, 233, 233);
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.25rem;
+    margin: 0.15rem;
+    width: 5.1rem;
+    height: 1.25rem;
+  }
+}
