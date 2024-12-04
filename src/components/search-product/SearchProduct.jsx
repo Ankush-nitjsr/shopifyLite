@@ -33,7 +33,7 @@ export const SearchProduct = ({
 
   return (
     <form
-      className="w-[60%] m-auto flex items-center justify-evenly p-1 bg-gray-200 border border-gray-300 rounded-3xl focus:border-[#ffa500] hover:border-[#ffa500]"
+      className="flex-1 m-auto flex items-center justify-evenly p-1 bg-gray-200 border border-gray-300 rounded-3xl focus:border-[#ffa500] hover:border-[#ffa500]"
       onSubmit={handleSearch}
     >
       <input
