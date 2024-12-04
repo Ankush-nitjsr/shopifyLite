@@ -33,7 +33,7 @@ export const PriceFilter = ({ productsData }) => {
 
   return (
     <div className="filter-section m-1 p-1">
-      <div className="flex md:flex-row justify-center items-center text-3xs">
+      <div className="flex md:flex-row justify-center items-center text-3xs md:text-base">
         <label htmlFor="min-price">Min Price:</label>
         <input
           id="min-price"
@@ -43,7 +43,7 @@ export const PriceFilter = ({ productsData }) => {
           placeholder="Enter minimum"
         />
       </div>
-      <div className="flex md:flex-row justify-center items-center text-3xs">
+      <div className="flex md:flex-row justify-center items-center text-3xs md:text-base">
         <label htmlFor="max-price">Max Price:</label>
         <input
           id="max-price"
@@ -53,12 +53,12 @@ export const PriceFilter = ({ productsData }) => {
           placeholder="Enter maximum"
         />
       </div>
-      <div className="flex space-x-1 md:space-x-2">
+      <div className="flex space-x-1 md:space-x-6">
         <div className="filter-btn">
           <Button
             variant="outline"
             onClick={applyFilter}
-            className="hover:bg-[#ffa500] w-14 text-[0.35rem] h-6"
+            className="hover:bg-[#ffa500] w-14 text-[0.35rem] h-6 md:w-24 md:h-10 md:text-sm"
           >
             Apply Filter
           </Button>
@@ -67,7 +67,7 @@ export const PriceFilter = ({ productsData }) => {
           <Button
             variant="outline"
             onClick={clearFilter}
-            className="hover:bg-[#ffa500] w-14 text-[0.35rem] h-6"
+            className="hover:bg-[#ffa500] w-14 text-[0.35rem] h-6 md:w-24 md:h-10 md:text-sm"
           >
             Clear Filter
           </Button>
