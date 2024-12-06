@@ -72,10 +72,12 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
         >
           <ShoppingBagIcon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-[#ffa500]" />
           <p className="pt-1">
-            <span className="text-2xl md:text-4xl font-medium text-[#ffa500]">
+            <span className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#ffa500]">
               S
             </span>
-            <span className="text-lg font-medium md:text-xl">hop</span>
+            <span className="font-medium text-lg sm:text-xl md:text-2xl">
+              hop
+            </span>
           </p>
         </NavLink>
 
@@ -90,40 +92,37 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
 
         {/* Profile */}
         <NavLink to="/profile" className="nav-link whitespace-nowrap">
-          <div className="flex flex-col">
+          <div>
             {localStorage.getItem("userSession") && userSession.firstName ? (
-              <>
-                <div className="hidden md:flex flex-col">
-                  <span className="text-3xs md:text-2xs">{`Hello, ${userSession.firstName}`}</span>
-                  <span className="sm:text-xs md:text-sm font-medium">
-                    Account & Lists
-                  </span>
-                </div>
-                <div className="md:hidden flex items-center">
-                  <UserCircleIcon className="w-5 h-5" />
-                  <span className="text-sm">{`${userSession.firstName}`}</span>
-                </div>
-              </>
-            ) : (
-              <>
-                <span className="text-3xs md:text-2xs">Hello, log in</span>
-                <span className="hidden sm:text-xs md:text-sm font-medium">
-                  Account & Lists
+              <div className="flex justify-center items-center gap-1">
+                <UserCircleIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />
+                <span className="text-xs sm:text-sm md:text-base lg:text-lg">
+                  {userSession.firstName}
                 </span>
-              </>
+              </div>
+            ) : (
+              <div className="flex justify-center items-center gap-1">
+                <UserCircleIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />
+                <span className="text-xs sm:text-sm md:text-base lg:text-lg">
+                  Log in
+                </span>
+              </div>
             )}
           </div>
         </NavLink>
 
         {/* Cart */}
-        <NavLink to="/cart" className="nav-link flex gap-1 relative">
+        <NavLink
+          to="/cart"
+          className="nav-link flex justify-center items-center gap-1 relative"
+        >
           {cartTotalQuantity > 0 && (
-            <p className="cart-badge w-4 h-4 md:w-5 md:h-5 rounded-md border border-black flex justify-center items-center">
+            <p className="cart-quantity w-4 h-4 md:w-5 md:h-5 rounded-md border border-black flex justify-center items-center">
               {cartTotalQuantity}
             </p>
           )}
-          <ShoppingCartIcon className="w-5 h-5 md:w-6 md:h-6" />
-          <p className="hidden md:block">Cart</p>
+          <ShoppingCartIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7" />
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg">Cart</p>
         </NavLink>
 
         {/* Logout */}
@@ -131,10 +130,12 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
           <Button
             onClick={handleLogout}
             variant="link"
-            className="nav-link gap-1 text-black"
+            className="nav-link gap-1 text-gray-600"
           >
-            <ArrowRightStartOnRectangleIcon className="w-5 h-5 md:w-6 md:h-6" />
-            <span className="hidden md:block">Logout</span>
+            <ArrowRightStartOnRectangleIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7" />
+            <span className="text-xs sm:text-sm md:text-base lg:text-lg">
+              Logout
+            </span>
           </Button>
         )}
       </nav>

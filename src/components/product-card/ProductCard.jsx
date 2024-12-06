@@ -14,17 +14,19 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="flex flex-col p-1 w-72">
+    <div className="flex flex-col p-1 w-48 md:w-72">
       <div className="product-card">
         <button className="product-img" onClick={handleNavigateToProduct}>
           <img src={product.images[0]} alt={product.title} />
         </button>
-        <div className="details-info space-y-2 p-2 flex flex-col justify-center">
-          <div className="product-brand font-bold flex justify-center">
-            <span>{product.brand}</span>
+        <div className="details-info space-y-1 p-2 flex flex-col justify-center">
+          <div className="product-brand flex justify-center">
+            <span className="font-bold text-xs sm:text-sm md:text-base">
+              {product.brand}
+            </span>
           </div>
           <button
-            className="product-title text-black"
+            className="product-title text-black text-xs sm:text-sm md:text-base"
             onClick={handleNavigateToProduct}
           >
             {product.title}
@@ -37,12 +39,16 @@ const ProductCard = ({ product }) => {
               price={product.price}
               discountPercentage={product.discountPercentage}
             />
-            <div>
+            <div className="text-xs sm:text-sm md:text-base">
               Status:{" "}
               {product.stock > 0 ? (
-                <span className="text-green-700">In Stock</span>
+                <span className="text-green-700 text-xs sm:text-sm md:text-base">
+                  In Stock
+                </span>
               ) : (
-                <span className="text-orange-500">Unavailable</span>
+                <span className="text-orange-500 text-xs sm:text-sm md:text-base">
+                  Unavailable
+                </span>
               )}
             </div>
           </div>

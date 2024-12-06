@@ -31,6 +31,27 @@
   border: 1px solid #ffa500;
 }
 
+@media (max-width: 1100px) {
+  .filter-section {
+    gap: 0.5rem;
+  }
+
+  .filter-section input {
+    margin: 0.25rem;
+    width: 8.15rem;
+  }
+}
+
+@media (max-width: 925px) {
+  .filter-section label {
+    font-size: 0.75rem;
+  }
+  .filter-section input {
+    font-size: 0.75rem;
+    width: 6.75rem;
+  }
+}
+
 @media (max-width: 768px) {
   .filter-section {
     display: flex;

@@ -14,13 +14,19 @@ export const StarRating = ({ rating }) => {
       {Array(ratingStars)
         .fill()
         .map((_, idx) => (
-          <SolidStarIcon key={idx} className="w-5 h-5 text-yellow-500" />
+          <SolidStarIcon
+            key={idx}
+            className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-yellow-500"
+          />
         ))}
       {hasPartialStar &&
         Array(5 - ratingStars)
           .fill()
           .map((_, idx) => (
-            <OutlineStarIcon key={idx} className="w-5 h-5 text-yellow-500" />
+            <OutlineStarIcon
+              key={idx}
+              className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-yellow-500"
+            />
           ))}
     </div>
   );
