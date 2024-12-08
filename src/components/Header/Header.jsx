@@ -117,7 +117,7 @@ const Header = ({ setSearchFlag, setSearchedProducts }) => {
           className="nav-link flex justify-center items-center gap-1 relative"
         >
           {cartTotalQuantity > 0 && (
-            <p className="cart-quantity w-4 h-4 md:w-5 md:h-5 rounded-md border border-black flex justify-center items-center">
+            <p className="cart-quantity text-3xs md:text-2xs w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 rounded-md border border-black flex justify-center items-center">
               {cartTotalQuantity}
             </p>
           )}
