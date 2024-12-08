@@ -22,6 +22,9 @@ export const PCNavMenu = () => {
     setRatingFilter,
   } = useContext(ProductContext);
 
+  // state to handle checked status for selected price ranges
+  const [selectedPriceRanges, SetSelectedPriceRanges] = useState([]);
+
   // State to handle checked status for discount checkboxes
   const [selectedDiscounts, setSelectedDiscounts] = useState([]);
 
@@ -47,12 +50,25 @@ export const PCNavMenu = () => {
     setCategoryFilter(category);
   };
 
-  const handlePriceClick = (label) => {
-    const selectedRange = priceRanges.find((range) => range.label === label);
-    if (selectedRange) {
+  const handlePriceClick = (label, isChecked) => {
+    const updatedPriceRanges = isChecked
+      ? [...selectedPriceRanges, label]
+      : selectedPriceRanges.filter((priceRange) => priceRange !== label);
+
+    SetSelectedPriceRanges(updatedPriceRanges);
+
+    const startPrices = priceRanges
+      .filter((priceRange) => updatedPriceRanges.includes(priceRange.label))
+      .map((priceRange) => priceRange.startPrice);
+
+    const endPrices = priceRanges
+      .filter((priceRange) => updatedPriceRanges.includes(priceRange.label))
+      .map((priceRange) => priceRange.endPrice);
+
+    if (startPrices.length > 0 && endPrices.length > 0) {
       setPriceFilter({
-        startPrice: selectedRange.startPrice,
-        endPrice: selectedRange.endPrice,
+        startPrice: Math.min(...startPrices),
+        endPrice: Math.max(...endPrices),
       });
     } else {
       setPriceFilter({});
@@ -132,17 +148,15 @@ export const PCNavMenu = () => {
         <div className="flex justify-between items-center mb-4">
           <span className="text-lg font-medium">Price</span>
         </div>
-        <div className="space-y-2 flex flex-col items-start px-2">
+        <div className="space-y-3 flex flex-col items-start">
           {priceRanges.map((range) => (
-            <Button
+            <CheckboxField
               key={range.label}
-              onClick={() => handlePriceClick(range.label)}
-              variant="link"
-              size="lg"
-              className="text-black text-base"
-            >
-              {range.label}
-            </Button>
+              text={range.label}
+              onCheckedChange={(checked) =>
+                handlePriceClick(range.label, checked)
+              }
+            />
           ))}
         </div>
       </div>
