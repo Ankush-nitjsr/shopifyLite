@@ -37,19 +37,19 @@ nav {
   margin: 0 1rem;
 }
 
-.cart-badge {
+.cart-quantity {
   position: absolute;
   top: -0.6rem;
-  left: 0.4rem;
+  left: 0.7rem;
   background-color: rgb(249, 100, 100);
   color: white;
-  font-size: 0.7rem;
 }
 
 @media (max-width: 768px) {
   header {
     padding: 1rem 2.5rem;
   }
+
   nav {
     flex-wrap: wrap;
   }
@@ -58,5 +58,13 @@ nav {
     width: 100%;
     margin-top: 0;
     order: 2;
+  }
+
+  .cart-quantity {
+    position: absolute;
+    top: -0.5rem;
+    left: 0.5rem;
+    background-color: rgb(249, 100, 100);
+    color: white;
   }
 }
