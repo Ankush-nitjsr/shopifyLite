@@ -3,10 +3,18 @@ import "./styles.css";
 import { productPropTypes } from "../../lib/productPropTypes";
 import { PCPrice } from "./PCPrice";
 import { StarRating } from "../product-page/StarRating";
+import { useState, useEffect } from "react";
 
 const ProductCard = ({ product }) => {
-  // Hook for navigation
   const navigate = useNavigate();
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Handle cached images
+  useEffect(() => {
+    const img = new Image();
+    img.src = product.images[0];
+    img.onload = () => setImageLoaded(true);
+  }, [product.images]);
 
   // Navigate to product details page
   const handleNavigateToProduct = () => {
@@ -17,7 +25,18 @@ const ProductCard = ({ product }) => {
     <div className="flex flex-col p-1 w-48 md:w-72">
       <div className="product-card">
         <button className="product-img" onClick={handleNavigateToProduct}>
-          <img src={product.images[0]} alt={product.title} />
+          {/* Placeholder while image is loading */}
+          {!imageLoaded && (
+            <div className="image-placeholder bg-gray-200 animate-pulse w-full h-full" />
+          )}
+          {/* Image */}
+          <img
+            src={product.images[0]}
+            alt={product.title}
+            loading="lazy"
+            onLoad={() => setImageLoaded(true)}
+            className={`${imageLoaded ? "block" : "hidden"}`}
+          />
         </button>
         <div className="details-info space-y-1 p-2 flex flex-col justify-center">
           <div className="product-brand flex justify-center">
