@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { ProductContext } from "../../contexts/ProductContext";
 import Button from "../../ui/buttons/Button";
 
-export const PriceFilter = ({ productsData }) => {
+const PriceFilter = ({ productsData }) => {
   const { products, setProducts, setFilter } = useContext(ProductContext);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -80,3 +80,5 @@ export const PriceFilter = ({ productsData }) => {
 PriceFilter.propTypes = {
   productsData: PropTypes.arrayOf(productPropTypes),
 };
+
+export default PriceFilter;
