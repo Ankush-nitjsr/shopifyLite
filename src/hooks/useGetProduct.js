@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export const useGetProduct = (id) => {
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -11,11 +12,12 @@ export const useGetProduct = (id) => {
         setData(result);
       } catch (error) {
         console.error("Error fetching product:", error);
+        setError(error);
       }
     };
 
     if (id) fetchProduct();
   }, [id]);
 
-  return { data };
+  return { data, error };
 };
