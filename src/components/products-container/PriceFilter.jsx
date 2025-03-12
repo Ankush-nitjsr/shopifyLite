@@ -5,7 +5,7 @@ import { ProductContext } from "../../contexts/ProductContext";
 import Button from "../../ui/buttons/Button";
 
 const PriceFilter = ({ productsData }) => {
-  const { products, setProducts, setFilter } = useContext(ProductContext);
+  const { products, setProducts } = useContext(ProductContext);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
@@ -27,7 +27,6 @@ const PriceFilter = ({ productsData }) => {
   const clearFilter = () => {
     setMinPrice("");
     setMaxPrice("");
-    setFilter("");
     setProducts(productsData);
   };
 
