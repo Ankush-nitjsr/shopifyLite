@@ -8,7 +8,7 @@ import { useGetProducts } from "../../hooks/useGetProducts";
 import { useFilterProducts } from "../../hooks/useFilterProducts";
 import { discounts, priceRanges, ratings } from "./constants";
 
-export const PCNavMenu = () => {
+const PCNavMenu = () => {
   // Get all products
   const { data } = useGetProducts();
 
@@ -203,3 +203,5 @@ export const PCNavMenu = () => {
     </div>
   );
 };
+
+export default PCNavMenu;
