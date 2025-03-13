@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
+import { getProducts } from "../apis/product-apis";
 
 export const useGetProducts = () => {
   const [data, setData] = useState([]);
@@ -11,35 +12,49 @@ export const useGetProducts = () => {
   });
 
   useEffect(() => {
+    const abortController = new AbortController(); // For cleanup
+
     const fetchProducts = async () => {
       setLoading(true);
-      try {
-        const response = await fetch(`https://dummyjson.com/products`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+      setError(null);
 
-        const result = await response.json();
-        console.log("products: ", result.products);
+      try {
+        const response = await getProducts();
 
         // Set products data and pagination details
-        setData(result.products);
+        setData(response.data.products);
 
         setPagination({
-          total: result.total,
-          skip: result.skip,
-          limit: result.limit,
+          total: response.data.total,
+          skip: response.data.skip,
+          limit: response.data.limit,
         });
       } catch (error) {
-        console.error("Error fetching products:", error);
-        setError(error.message);
+        if (!abortController.signal.aborted) {
+          handleApiError(error);
+          setError(error.message);
+        }
       } finally {
         setLoading(false);
       }
     };
-
     fetchProducts();
+
+    // Cleanup function to abort the request if the component unmounts
+    return () => {
+      abortController.abort();
+    };
   }, []);
+
+  const handleApiError = (error) => {
+    if (error.response) {
+      console.error("Server responded with an error:", error.response.status);
+    } else if (error.request) {
+      console.error("No response received:", error.request);
+    } else {
+      console.error("Error setting up request:", error.message);
+    }
+  };
 
   // Memoize the data to prevent re-renders unless data changes
   const memoizedData = useMemo(() => data, [data]);
