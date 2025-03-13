@@ -5,7 +5,7 @@ import { AccountNavMenu } from "./AccountNavMenu";
 import { UserModal } from "./UserModal";
 import { AccountDetails } from "./AccountDetails";
 
-export const Account = () => {
+const Account = () => {
   // Get user details with context hook
   const { user } = useContext(AuthContext);
 
@@ -29,3 +29,5 @@ export const Account = () => {
     </div>
   );
 };
+
+export default Account;
