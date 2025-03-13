@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 
 export const useGetUser = (userId) => {
@@ -6,11 +7,10 @@ export const useGetUser = (userId) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`https://dummyjson.com/users/${userId}`);
-        const result = await response.json();
-        console.log("User result: ", result);
-
-        setUserData(result);
+        const response = await axios.get(
+          `https://dummyjson.com/users/${userId}`
+        );
+        setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user:", error);
       }
