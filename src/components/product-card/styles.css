@@ -11,18 +11,20 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-.product-img {
-  height: 15rem;
-  width: 100%;
+.product-img-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden; /* Prevent image overflow */
+  height: 15rem;
+  width: 100%;
   background-color: #f3f4f6;
+  position: relative;
 }
 
-.product-img img {
-  width: 60%;
-  max-height: 90%;
+.product-image {
+  max-height: 14rem;
+  max-width: 10rem;
 }
 
 .product-title {
