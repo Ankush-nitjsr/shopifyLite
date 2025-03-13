@@ -1,20 +1,14 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import { productPropTypes } from "../../lib/productPropTypes";
 import { PCPrice } from "./PCPrice";
 import { StarRating } from "../product-page/StarRating";
-import { useState, useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component"; // For lazy loading images
+import "react-lazy-load-image-component/src/effects/blur.css"; // For blur effect
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  // Handle cached images
-  useEffect(() => {
-    const img = new Image();
-    img.src = product.images[0];
-    img.onload = () => setImageLoaded(true);
-  }, [product.images]);
 
   // Navigate to product details page
   const handleNavigateToProduct = () => {
@@ -24,18 +18,16 @@ const ProductCard = ({ product }) => {
   return (
     <div className="flex flex-col p-1 w-48 md:w-72">
       <div className="product-card">
-        <button className="product-img" onClick={handleNavigateToProduct}>
-          {/* Placeholder while image is loading */}
-          {!imageLoaded && (
-            <div className="image-placeholder bg-gray-200 animate-pulse w-full h-full" />
-          )}
-          {/* Image */}
-          <img
+        <button
+          className="product-img-container"
+          onClick={handleNavigateToProduct}
+        >
+          {/* Lazy-loaded image with built-in blur effect */}
+          <LazyLoadImage
             src={product.images[0]}
             alt={product.title}
-            loading="lazy"
-            onLoad={() => setImageLoaded(true)}
-            className={`${imageLoaded ? "block" : "hidden"}`}
+            effect="blur" // Blur effect while loading
+            className="product-image"
           />
         </button>
         <div className="details-info space-y-1 p-2 flex flex-col justify-center">
@@ -81,4 +73,4 @@ ProductCard.propTypes = {
   product: productPropTypes,
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);
