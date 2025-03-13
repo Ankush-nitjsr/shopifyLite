@@ -5,7 +5,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import "./styles.css";
 
-export const LoginForm = () => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -134,3 +134,5 @@ export const LoginForm = () => {
     </form>
   );
 };
+
+export default LoginForm;
